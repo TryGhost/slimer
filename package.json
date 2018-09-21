@@ -10,7 +10,9 @@
     "**/node_modules/**"
   ],
   "scripts": {
-    "dev": "echo \"Implement me!\"",
+    "dev": "slimer",
+    "slimer": "slimer",
+    "presetup": "yarn",
     "setup": "lerna bootstrap",
     "test:parent": "NODE_ENV=testing mocha ./test/**/*.test.js",
     "test": "yarn test:parent && lerna run test",

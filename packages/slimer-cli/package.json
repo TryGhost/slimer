@@ -1,0 +1,28 @@
+{
+  "name": "@tryghost/slimer-cli",
+  "version": "0.0.0",
+  "description": "tbc",
+  "repository": "https://github.com/TryGhost/slimer/tree/master/packages/slimer-cli",
+  "author": "Ghost Foundation",
+  "license": "MIT",
+  "bin": {
+    "slimer": "./bin/slimer.js"
+  },
+  "scripts": {
+    "dev": "slimer",
+    "slimer": "slimer",
+    "test": "NODE_ENV=testing mocha ./test/**/*.test.js",
+    "lint": "eslint . --ext .js --cache",
+    "posttest": "yarn lint"
+  },
+  "devDependencies": {
+    "mocha": "5.2.0",
+    "should": "13.2.3",
+    "sinon": "6.3.4"
+  },
+  "dependencies": {
+    "bluebird": "^3.5.2",
+    "ghost-ignition": "^2.9.4",
+    "lodash": "^4.17.11"
+  }
+}

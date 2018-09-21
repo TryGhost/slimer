@@ -30,7 +30,7 @@ This is a mono repository, managed with [lerna](https://lernajs.io/).
 
 ## Run
 
-- @TODO
+- `yarn dev` is an alias for `slimer`
 
 ## Test
 - `yarn lint` run just eslint
