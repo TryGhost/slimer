@@ -1,17 +1,44 @@
 # Slimer
 
-## Installation
-1. Make sure that `gstenv` is green. See [Dev Environment](https://github.com/TryGhost/Team/blob/master/Engineering/Dev%20Environment.md) for docs.
-2. `git clone` this repo & `cd` into it as usual
-3. Run `yarn` to install top-level dependencies.
+A lerna mono-repository of tools for working on Ghost and in the surrounding ecosystem.
+
+It mainly provides a CLI tool for quickly starting new projects. 
+
+Slimer is capable of creating 4 different types of project:
+- **Pkg:**    create a package inside a mono repo
+- **Mono:**   start a new mono repo with lerna, just like the `slimer` repo
+- **Module:** a simple standalone node module
+- **App:**    a standalone app, based on express
+
+## Install
+
+- `npm i -g @tryghost/slimer-cli`
+
+## Usage
+
+- `slimer new <name>`
+- Run `slimer --help` for full usage details
+
+## Develop
+
+This is a mono repository, managed with [lerna](https://lernajs.io/). 
+
+1. `git clone` this repo & `cd` into it as usual
+2. `yarn setup` is mapped to `lerna bootstrap`
+   - installs all external dependencies 
+   - links all interal dependencies
 
 ## Run
-- Use: `yarn dev`
-- View: [http://localhost:9999](http://localhost:9999)
+
+- @TODO
 
 ## Test
 - `yarn lint` run just eslint
-- `yarn test` run lint && tests
+- `yarn test` run tests & then eslint
+
+## Publish
+
+- `yarn ship` is mapped to `lerna publish` and will publish any package that has changed.
 
 # Copyright & License
 
