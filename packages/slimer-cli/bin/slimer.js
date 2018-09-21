@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+const prettyCLI = require('@tryghost/pretty-cli');
 
-// Testing!
-console.log('We came, we saw, we kicked its ass!'); // eslint-disable-line no-console
+prettyCLI
+    .parseAndExit();

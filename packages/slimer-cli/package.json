@@ -24,6 +24,7 @@
     "sinon": "6.3.4"
   },
   "dependencies": {
+    "@tryghost/pretty-cli": "^1.0.0",
     "bluebird": "^3.5.2",
     "ghost-ignition": "^2.9.4",
     "lodash": "^4.17.11"
