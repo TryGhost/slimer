@@ -1,10 +1,11 @@
 # Slimer
 
-A lerna mono-repository of tools for working on Ghost and in the surrounding ecosystem.
+A suite of tools for working on Ghost and in the surrounding ecosystem.
 
-It mainly provides a CLI tool for quickly starting new projects. 
+It (will soon) provide a CLI tool for quickly starting new projects. 
 
 Slimer is capable of creating 4 different types of project:
+
 - **Pkg:**    create a package inside a mono repo
 - **Mono:**   start a new mono repo with lerna, just like the `slimer` repo
 - **Module:** a simple standalone node module
@@ -12,12 +13,16 @@ Slimer is capable of creating 4 different types of project:
 
 ## Install
 
+Add me to your globals:
+
 - `npm i -g @tryghost/slimer-cli`
 
 ## Usage
 
+I aim to be easy to use, if you ever get stuck, try adding `--help` to a command.
+
 - `slimer new <name>`
-- Run `slimer --help` for full usage details
+- Run `slimer` or `slimer --help` for full usage details
 
 ## Develop
 
