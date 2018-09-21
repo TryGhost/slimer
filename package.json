@@ -19,7 +19,7 @@
     "lint": "eslint . --ext .js --cache",
     "posttest": "yarn lint",
     "preship": "yarn test",
-    "ship": "lerna publish"
+    "ship": "STATUS=$(git status --porcelain); echo $STATUS; if [ -z \"$STATUS\" ]; then lerna publish; fi"
   },
   "devDependencies": {
     "eslint": "5.6.0",
