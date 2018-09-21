@@ -1,0 +1,29 @@
+{
+  "private": true,
+  "repository": "https://github.com/TryGhost/slimer",
+  "author": "Ghost Foundation",
+  "license": "MIT",
+  "workspaces": [
+    "packages/*"
+  ],
+  "eslintIgnore": [
+    "**/node_modules/**"
+  ],
+  "scripts": {
+    "dev": "echo \"Implement me!\"",
+    "setup": "lerna bootstrap",
+    "test:parent": "NODE_ENV=testing mocha ./test/**/*.test.js",
+    "test": "yarn test:parent && lerna run test",
+    "lint": "eslint . --ext .js --cache",
+    "posttest": "yarn lint",
+    "preship": "yarn test",
+    "ship": "lerna publish"
+  },
+  "devDependencies": {
+    "eslint": "5.6.0",
+    "eslint-plugin-ghost": "0.0.27",
+    "mocha": "5.2.0",
+    "should": "13.2.3",
+    "sinon": "6.3.4"
+  }
+}
