@@ -1,15 +1,19 @@
 {
   "name": "generator-slimer",
   "version": "0.0.0",
-  "description": "tbc",
+  "description": "A Yeoman generator for creating new packages within the Ghost ecosystem.",
   "repository": "https://github.com/TryGhost/slimer/tree/master/packages/generator-slimer",
   "author": "Ghost Foundation",
   "license": "MIT",
   "files": [
     "generators"
   ],
+  "keywords": [
+    "yeoman-generator",
+    "ghost"
+  ],
   "scripts": {
-    "dev": "echo \"Implement me!\"",
+    "dev": "yo slimer",
     "test": "NODE_ENV=testing mocha ./test/**/*.test.js",
     "lint": "eslint . --ext .js --cache",
     "posttest": "yarn lint"
@@ -20,6 +24,7 @@
     "sinon": "6.3.4"
   },
   "dependencies": {
+    "chalk": "^2.4.1",
     "lodash": "^4.17.11",
     "yeoman-generator": "^2.0.1"
   }

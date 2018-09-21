@@ -1,6 +1,7 @@
 'use strict';
 const Generator = require('yeoman-generator');
 const _ = require('lodash');
+const chalk = require('chalk');
 
 /**
  * Custom Generator
@@ -15,9 +16,14 @@ module.exports = class extends Generator {
         this.knownArguments = knownArguments;
         this.knownOptions = knownOptions;
 
-        // Initialise our options & arguments
-        _.each(this.knownArguments, (value, key) => this.argument(key, value));
-        _.each(this.knownOptions, (value, key) => this.option(key, value));
+        try {
+            // Initialise our options & arguments
+            _.each(this.knownArguments, (value, key) => this.argument(key, value));
+            _.each(this.knownOptions, (value, key) => this.option(key, value));
+        } catch (err) {
+            this.log(`${chalk.red('error')} Unable to continue: ${err.message}`);
+            process.exit(1);
+        }
     }
 
     _initProps() {

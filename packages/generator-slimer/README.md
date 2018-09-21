@@ -1,13 +1,15 @@
 # Generator Slimer
 
-## Installation
-1. Make sure that `gstenv` is green. See [Dev Environment](https://github.com/TryGhost/Team/blob/master/Engineering/Dev%20Environment.md) for docs.
-2. `git clone` this repo & `cd` into it as usual
-3. Run `yarn` to install top-level dependencies.
+## Development 
+
+## Install
+
+1. `git clone` this repo & `cd` into it as usual
+2. Run `yarn` to install top-level dependencies.
+3. Run `yarn link` to make the generator available 
 
 ## Run
-- Use: `yarn dev`
-- View: [http://localhost:9999](http://localhost:9999)
+- Use: `yarn dev [name]`
 
 ## Test
 - `yarn lint` run just eslint
