@@ -25,14 +25,15 @@ This is a mono repository, managed with [lerna](https://lernajs.io/).
 
 1. `git clone` this repo & `cd` into it as usual
 2. `yarn setup` is mapped to `lerna bootstrap`
-   - installs all external dependencies 
-   - links all interal dependencies
+   - installs all external dependencies  
+   - links all internal dependencies
 
 ## Run
 
-- `yarn dev` is an alias for `slimer`
+- `yarn dev` (or `yarn slimer`) are aliases for `slimer`
 
 ## Test
+
 - `yarn lint` run just eslint
 - `yarn test` run tests & then eslint
 
