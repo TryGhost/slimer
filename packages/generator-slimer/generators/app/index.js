@@ -2,7 +2,14 @@
 const Generator = require('../../lib/Generator');
 
 // These are the options that can be passed in as flags e.g. --foo=bar
-const knownOptions = {};
+const knownOptions = {
+    type: {
+        type: String,
+        required: true,
+        default: 'module',
+        desc: 'What kind of project to create: [module, app, mono, pkg]'
+    }
+};
 
 // These are arguments that are passed directly
 const knownArguments = {
