@@ -1,4 +1,5 @@
 const ui = require('../ui');
+const newProject = require('../lib/new-project');
 
 // Internal ID in case we need one.
 exports.id = 'new';
@@ -18,5 +19,6 @@ exports.paramsDesc = ['Name for the project folder'];
 // What to do when this command is executed
 exports.run = (argv) => {
     ui.log('Will evenually run yeoman to create', argv.name);
+    newProject(argv);
 };
 
