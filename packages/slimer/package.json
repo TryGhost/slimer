@@ -21,8 +21,8 @@
     "sinon": "6.3.4"
   },
   "dependencies": {
+    "@tryghost/generator-slimer": "^0.0.2",
     "debug": "^4.0.1",
-    "generator-slimer": "^0.0.2",
     "lodash": "^4.17.11",
     "yeoman-environment": "^2.3.3"
   }
