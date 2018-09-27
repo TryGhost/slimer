@@ -14,6 +14,8 @@
     "slimer": "slimer",
     "presetup": "yarn",
     "setup": "lerna bootstrap",
+    "link:cli": "ln -s $( cd \"$(dirname ./packages/slimer-cli/bin/slimer.js)\" ; pwd -P )/slimer.js $(npm bin --global)/slimer",
+    "unlink:cli": "rm $(npm bin --global)/slimer",
     "test:parent": "NODE_ENV=testing mocha ./test/**/*.test.js",
     "test": "yarn test:parent && lerna run test",
     "lint": "eslint . --ext .js --cache",
