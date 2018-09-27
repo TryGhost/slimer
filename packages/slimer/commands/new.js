@@ -1,4 +1,3 @@
-const ui = require('../ui');
 const newProject = require('../lib/new-project');
 
 // Internal ID in case we need one.
@@ -16,9 +15,12 @@ exports.desc = 'Start a new project';
 // Descriptions for the individual params
 exports.paramsDesc = ['Name for the project folder'];
 
-// What to do when this command is executed
-exports.run = (argv) => {
-    ui.log(`Will create new project "${argv.name}"`);
-
-    newProject(argv);
+exports.setup = (sywac) => {
+    sywac.enumeration('-t, --type <type>', {
+        desc: 'The type of project to create',
+        choices: ['module', 'app', 'pkg', 'mono']
+    });
 };
+
+// What to do when this command is executed
+exports.run = newProject;

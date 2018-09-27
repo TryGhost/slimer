@@ -6,8 +6,7 @@ const knownOptions = {
     type: {
         type: String,
         required: true,
-        default: 'module',
-        desc: 'What kind of project to create: [module, app, mono, pkg]'
+        desc: 'What kind of project to create: [module, app, pkg, mono]'
     }
 };
 
@@ -37,10 +36,12 @@ module.exports = class extends Generator {
 
         const prompts = [
             {
-                type: 'confirm',
-                name: 'someAnswer',
-                message: 'Would you like to enable this option?',
-                default: true
+                type: 'list',
+                name: 'type',
+                message: 'Is this a standalone app or a module?',
+                choices: ['app', 'module'],
+                default: 'module',
+                when: () => !this.props.type
             }
         ];
 
