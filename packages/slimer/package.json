@@ -26,6 +26,7 @@
     "find-root": "^1.1.0",
     "fs-extra": "^7.0.0",
     "lodash": "^4.17.11",
+    "mkdirp": "^0.5.1",
     "yeoman-environment": "^2.3.3"
   }
 }

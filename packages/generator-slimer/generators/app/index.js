@@ -1,5 +1,6 @@
 'use strict';
 const Generator = require('../../lib/Generator');
+const mkdirp = require('mkdirp');
 
 // These are the options that can be passed in as flags e.g. --foo=bar
 const knownOptions = {
@@ -59,5 +60,14 @@ module.exports = class extends Generator {
         return this.prompt(prompts).then((answer) => {
             this._mergeAnswers(answer);
         });
+    }
+
+    // Configuring is for creating "config" files
+    configuring() {
+        // First, set destination root for all yeoman work, and ensure the path exists
+        this.destinationRoot(this.props.path);
+        mkdirp(this.destinationRoot());
+
+        this.log('Created new folder', this.destinationRoot());
     }
 };
