@@ -7,6 +7,11 @@ const knownOptions = {
         type: String,
         required: true,
         desc: 'What kind of project to create: [module, app, pkg, mono]'
+    },
+    path: {
+        type: String,
+        required: false,
+        desc: 'Where to create the new project'
     }
 };
 
@@ -26,6 +31,12 @@ module.exports = class extends Generator {
 
     initializing() {
         super.initializing();
+        let name = this.props.name;
+
+        // Set the path, to either the passed path + name, or just name
+        this.props.path = this.props.path ?
+            this.destinationPath(this.props.path, name) :
+            this.destinationPath(name);
 
         this.log('Initialized');
         this.log(this.props);

@@ -7,10 +7,10 @@ module.exports = (argv) => {
     debug('command start');
 
     // @TODO cleaner?!
-    let rootDir = fs.getRootDir(process.cwd());
-    if (fs.pathExists(rootDir, 'lerna.json')) {
+    let monoRoot = fs.findMonoRoot();
+    if (monoRoot) {
         argv.type = 'pkg';
-        argv.root = rootDir;
+        argv.path = monoRoot;
     }
 
     // Fun bit of UI logic to print a useful message
