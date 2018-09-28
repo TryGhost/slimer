@@ -8,5 +8,9 @@
             "allowBranch": "master",
             "message": "Published new versions"
         }
+    },
+    "local": {
+        "public": true,
+        "repo": "https://github.com/TryGhost/slimer"
     }
 }

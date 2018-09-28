@@ -1,3 +1,4 @@
+const debug = require('debug')('slimer:fs');
 const findRoot = require('find-root');
 const fs = require('fs-extra');
 const path = require('path');
@@ -16,12 +17,19 @@ fsUtils.pathExists = (...args) => {
     return fs.existsSync(path.join(...args));
 };
 
-module.exports.findMonoRoot = () => {
+module.exports.loadMonoConfig = () => {
     let rootDir = fsUtils.getRootDir(process.cwd());
 
     if (!fsUtils.pathExists(rootDir, 'lerna.json')) {
-        return false;
+        return {};
     }
 
-    return path.join(rootDir, 'packages');
+    let lernaJSON = require(path.join(rootDir, 'lerna.json'));
+    let monoConfig = lernaJSON.local || {};
+
+    monoConfig.type = 'pkg';
+    monoConfig.path = path.join(rootDir, 'packages');
+
+    debug('Loaded monoConfig', monoConfig);
+    return monoConfig;
 };
