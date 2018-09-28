@@ -62,12 +62,31 @@ module.exports = class extends Generator {
         });
     }
 
-    // Configuring is for creating "config" files
-    configuring() {
-        // First, set destination root for all yeoman work, and ensure the path exists
+    _configureDestination() {
+        // Set destination root that will be used by Yeoman from here on
         this.destinationRoot(this.props.path);
+        // Ensure that path exists
         mkdirp(this.destinationRoot());
 
         this.log('Created new folder', this.destinationRoot());
+    }
+
+    // Add .editorconfig file, except if this project is a mono repo package.
+    _configureEditorConfig() {
+        if (this.props.type !== 'pkg') {
+            this.fs.copy(
+                this.templatePath('.editorconfig'),
+                this.destinationPath('.editorconfig')
+            );
+        }
+    }
+
+    // Configuring is for creating "config" files
+    configuring() {
+        // First, ensure we have the correct destination for all of our files
+        this._configureDestination();
+
+        // Next, add our default .editorconfig file
+        this._configureEditorConfig();
     }
 };
