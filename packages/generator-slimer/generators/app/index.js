@@ -1,5 +1,6 @@
 'use strict';
 const Generator = require('../../lib/Generator');
+const _ = require('lodash');
 const mkdirp = require('mkdirp');
 
 // These are the options that can be passed in as flags e.g. --foo=bar
@@ -8,6 +9,11 @@ const knownOptions = {
         type: String,
         required: true,
         desc: 'What kind of project to create: [module, app, pkg, mono]'
+    },
+    public: {
+        type: Boolean,
+        required: false,
+        desc: 'Is the project public?'
     },
     path: {
         type: String,
@@ -54,6 +60,13 @@ module.exports = class extends Generator {
                 choices: ['app', 'module'],
                 default: 'module',
                 when: () => !this.props.type
+            },
+            {
+                type: 'confirm',
+                name: 'public',
+                message: `Is your project public?`,
+                when: _.isNil(this.props.public),
+                default: true
             }
         ];
 

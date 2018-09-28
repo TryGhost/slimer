@@ -20,6 +20,12 @@ exports.setup = (sywac) => {
         desc: 'The type of project to create',
         choices: ['module', 'app', 'pkg', 'mono']
     });
+
+    sywac.boolean({
+        flags: '--public',
+        defaultValue: true,
+        desc: 'Is the project public?'
+    });
 };
 
 // What to do when this command is executed
