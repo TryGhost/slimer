@@ -102,4 +102,11 @@ module.exports = class extends Generator {
         // Next, add our default .editorconfig file
         this._configureEditorConfig();
     }
+
+    default() {
+        // Public projects require an MIT license
+        if (this.props.public) {
+            this.composeWith(require.resolve('../license'), this.props);
+        }
+    }
 };
