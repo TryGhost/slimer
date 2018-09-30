@@ -145,6 +145,11 @@ module.exports = class extends Generator {
         if (this.props.public) {
             this.composeWith(require.resolve('../license'), this.props);
         }
+
+        // Mono repos don't get base node setup
+        if (this.props.type !== 'mono') {
+            this.composeWith(require.resolve('../node'), this.props);
+        }
     }
 
     writing() {
