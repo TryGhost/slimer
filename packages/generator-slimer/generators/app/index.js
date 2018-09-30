@@ -1,8 +1,8 @@
 'use strict';
+const Generator = require('../../lib/Generator');
 const _ = require('lodash');
 const mkdirp = require('mkdirp');
 const chalk = require('chalk');
-const Generator = require('../../lib/Generator');
 const TYPES = ['app', 'module', 'pkg', 'mono'];
 
 // These are the options that can be passed in as flags e.g. --foo=bar
@@ -163,6 +163,10 @@ module.exports = class extends Generator {
         }
 
         this.composeWith(require.resolve('../lint'), this.props);
+
+        if (this.props.type !== 'pkg') {
+            this.composeWith(require.resolve('../gitroot'), this.props);
+        }
     }
 
     writing() {
