@@ -12,13 +12,22 @@ const knownOptions = {
     },
     public: {
         type: Boolean,
-        required: false,
         desc: 'Is the project public?'
+    },
+    org: {
+        type: String,
+        default: 'TryGhost',
+        desc: 'GitHub Organisation'
+    },
+    scope: {
+        type: String,
+        default: '',
+        desc: 'NPM Scope name'
     },
     path: {
         type: String,
-        required: false,
-        desc: 'Where to create the new project'
+        desc: 'Where to create the new project',
+        hidden: true
     }
 };
 
@@ -45,8 +54,34 @@ module.exports = class extends Generator {
             this.destinationPath(this.props.path, name) :
             this.destinationPath(name);
 
+        this._initNaming(name);
+
         this.log('Initialized');
         this.log(this.props);
+    }
+
+    // What gets passed to us is just the folder name
+    _initNaming(name) {
+        // First, sort our the GitHub org and the npm scope
+        if (this.props.org.match(/nexes/i)) {
+            this.props.org = 'NexesJS';
+            this.props.scope = this.props.scope || '@nexes/';
+        }
+        // @TODO get pkg scope
+
+        // Next, determine names...
+
+        // # Naming conventions.
+        // by default, we expect to start with props.name (folder name) being either in kebabcase that we want to keep
+        // E.g. mg-medium-export
+        // Or something capitalised, e.g. Ghost
+
+        // Repo name rules - it should be the same as the folder name
+        this.props.repoName = this.props.repoName || name;
+        // npm name rule, we try to add a scope, else use the base name, in kebabCase
+        this.props.npmName = `${this.props.scope}${this.props.npmName || _.kebabCase(name)}`;
+        // Project name, should be Properly Capitalised For the README! If it starts with mg-, convert to Migrate
+        this.props.projectName = this.props.projectName || _.startCase(name.replace(/^mg-/, 'Migrate '));
     }
 
     prompting() {
