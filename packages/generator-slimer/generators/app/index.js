@@ -147,6 +147,21 @@ module.exports = class extends Generator {
         }
     }
 
+    writing() {
+        const copyright = `Copyright (c) ${new Date().getFullYear()} Ghost Foundation`;
+        const publicCopyright = `${copyright} - Released under the [MIT license](LICENSE).`;
+        const privateCopyright = `${copyright}. All rights reserved.\n\nThis code is considered closed-source and not for distribution. There is no opensource license associated with this project.`;
+
+        this.props.copyright = this.props.public ? publicCopyright : privateCopyright;
+
+        // Create a README.md
+        this.fs.copyTpl(
+            this.templatePath('README.md'),
+            this.destinationPath('README.md'),
+            this.props
+        );
+    }
+
     end() {
         this.log(chalk.green('Slimer') + ' has finished creating ' + chalk.cyan(this.props.name));
     }

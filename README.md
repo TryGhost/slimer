@@ -17,12 +17,14 @@ Add me to your globals:
 
 - `npm i -g @tryghost/slimer-cli`
 
+
 ## Usage
 
 I aim to be easy to use, if you ever get stuck, try adding `--help` to a command.
 
 - `slimer new <name>`
 - Run `slimer` or `slimer --help` for full usage details
+
 
 ## Develop
 
