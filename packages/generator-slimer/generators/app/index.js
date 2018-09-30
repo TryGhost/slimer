@@ -2,6 +2,7 @@
 const Generator = require('../../lib/Generator');
 const _ = require('lodash');
 const mkdirp = require('mkdirp');
+const TYPES = ['app', 'module', 'pkg', 'mono'];
 
 // These are the options that can be passed in as flags e.g. --foo=bar
 const knownOptions = {
@@ -94,7 +95,7 @@ module.exports = class extends Generator {
                 message: 'Is this a standalone app or a module?',
                 choices: ['app', 'module'],
                 default: 'module',
-                when: () => !this.props.type
+                when: () => !this.props.type || !_.includes(TYPES, this.props.type)
             },
             {
                 type: 'confirm',
