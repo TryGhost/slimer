@@ -156,6 +156,11 @@ module.exports = class extends Generator {
         if (this.props.type !== 'mono') {
             this.composeWith(require.resolve('../node'), this.props);
         }
+
+        // Tests go first so that lint can interact with the test folder
+        if (!this.options.skipTest) { // @TODO add this option?
+            this.composeWith(require.resolve('../test'), this.props);
+        }
     }
 
     writing() {
