@@ -73,9 +73,13 @@ module.exports = class extends Generator {
         // First, sort our the GitHub org and the npm scope
         if (this.props.org.match(/nexes/i)) {
             this.props.org = 'NexesJS';
-            this.props.scope = this.props.scope || '@nexes/';
+            this.props.scope = this.props.scope || '@nexes';
         }
-        // @TODO get pkg scope
+
+        // Ensure scopes are properly formatted when present
+        if (this.props.scope !== '' && !_.endsWith(this.props.scope, '/')) {
+            this.props.scope += '/';
+        }
 
         // Next, determine names...
 
