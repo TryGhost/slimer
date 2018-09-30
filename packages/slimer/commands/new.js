@@ -1,4 +1,22 @@
+const _ = require('lodash');
+const cliYo = require('../lib/cli-yo');
 const newProject = require('../lib/new-project');
+const optOverrides = {
+    type: {
+        flags: '--type',
+        type: 'enum',
+        description: 'The type of project to create',
+        choices: ['module', 'app', 'pkg', 'mono'],
+        required: false
+    },
+    scope: {
+        // sywac doesn't respect empty string as a valid default
+        // @TODO push a fix to the main repo
+        hints: '[required] [string] [default: ""]'
+    }
+};
+
+let options = {};
 
 // Internal ID in case we need one.
 exports.id = 'new';
@@ -16,17 +34,27 @@ exports.desc = 'Start a new project';
 exports.paramsDesc = ['Name for the project folder'];
 
 exports.setup = (sywac) => {
-    sywac.enumeration('-t, --type <type>', {
-        desc: 'The type of project to create',
-        choices: ['module', 'app', 'pkg', 'mono']
-    });
-
-    sywac.boolean({
-        flags: '--public',
-        defaultValue: true,
-        desc: 'Is the project public?'
+    // Loop over the options we loaded from Yeoman
+    // and load these into sywac
+    _.each(options, (opt) => {
+        sywac.option(opt);
     });
 };
 
 // What to do when this command is executed
 exports.run = newProject;
+
+// A function to run first, Must return a promise
+exports.init = () => {
+    return new Promise((resolve) => {
+        // Load all of our options
+        cliYo.yoToSywac('@tryghost/slimer', (args, opts) => {
+            options = _.map(opts, (opt) => {
+                // Allows us to override options with the optOverrides object above
+                return optOverrides[opt.name] ? _.merge({}, opt, optOverrides[opt.name]) : opt;
+            });
+
+            resolve();
+        });
+    });
+};

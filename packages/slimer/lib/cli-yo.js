@@ -9,38 +9,84 @@ const _ = require('lodash');
 // Get access to the yeoman environment
 const yoEnv = require('yeoman-environment');
 const env = yoEnv.createEnv();
+class CliYo {
+    constructor() {
+        this.loaded = false;
+    }
 
-const findGenerator = (name, cb) => {
-    // @TODO: validation / error handling
-    env.lookup(() => {
-        debug('found', env.namespaces());
+    loadEnv(cb) {
+        env.lookup(() => {
+            this.loaded = true;
+            cb();
+        });
+    }
+
+    findGenerator(name, cb) {
+        // @TODO: validation / error handling
+        if (!this.loaded) {
+            return this.loadEnv(() => cb(env.get(name)));
+        }
+
         return cb(env.get(name));
-    });
-};
+    }
 
-const buildCallObj = (Generator, argv) => {
-    let help = env.instantiate(Generator, {options: {help: true}});
-    let argKeys = _.map(help._arguments, 'name');
-    let optKeys = _.map(help._options, 'name');
+    initGeneratorHelp(Generator) {
+        let help = env.instantiate(Generator, {options: {help: true}});
+        return {
+            args: help._arguments,
+            options: help._options
+        };
+    }
 
-    debug('provided with', argv);
-    debug('looking for', argKeys, optKeys);
+    buildCallObj(Generator, argv) {
+        let {args, options} = this.initGeneratorHelp(Generator);
+        let argKeys = _.map(args, 'name');
+        let optKeys = _.map(options, 'name');
 
-    let args = _(argv).pick(argKeys).values().value();
-    let options = _(argv).pick(optKeys).value();
+        debug('provided with', argv);
+        debug('looking for', argKeys, optKeys);
 
-    return {args, options};
-};
+        return {
+            args: _(argv).pick(argKeys).values().value(),
+            options: _(argv).pick(optKeys).value()
+        };
+    }
 
-module.exports.callGenerator = (name, argv, cb) => {
-    cb = cb || _.noop;
-    argv = _(argv).omit(['_', 'h', 'help', 'v', 'version']).omitBy(_.isUndefined).value();
+    yoToSywac(name, cb) {
+        this.findGenerator(name, (Generator) => {
+            let {args, options} = this.initGeneratorHelp(Generator);
+            const yoDefaults = ['help', 'skip-cache', 'skip-install'];
 
-    return findGenerator(name, (Generator) => {
-        let obj = buildCallObj(Generator, argv);
+            const toSywac = (t) => {
+                let tt = _.clone(t);
+                tt.type = t.type.name.toLowerCase();
+                tt.flags = `--${t.name}`;
+                tt.defaultValue = t.default;
+                return tt;
+            };
 
-        debug('init with', obj);
+            args = _.map(args, toSywac);
 
-        return env.create(Generator.namespace, obj).run(cb);
-    });
-};
+            options = _(options).filter((opt) => {
+                return !_.includes(yoDefaults, opt.name);
+            }).map(toSywac).value();
+
+            cb(args, options);
+        });
+    }
+
+    callGenerator(name, argv, cb) {
+        cb = cb || _.noop;
+        argv = _(argv).omit(['_', 'h', 'help', 'v', 'version']).omitBy(_.isUndefined).value();
+
+        return this.findGenerator(name, (Generator) => {
+            let obj = this.buildCallObj(Generator, argv);
+
+            debug('init with', obj);
+
+            return env.create(Generator.namespace, obj).run(cb);
+        });
+    }
+}
+
+module.exports = new CliYo();
