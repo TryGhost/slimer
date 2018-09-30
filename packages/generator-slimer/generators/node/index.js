@@ -95,4 +95,9 @@ module.exports = class extends Generator {
         // Create a package.json file
         this._writePackageJson();
     }
+
+    install() {
+        // Lodash, the one dependency we use everywhere & don't usually install without a caret
+        this.yarnInstall(['lodash', 'bluebird', 'ghost-ignition']);
+    }
 };
