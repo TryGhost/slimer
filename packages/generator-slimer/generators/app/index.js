@@ -14,6 +14,7 @@ const knownOptions = {
     },
     public: {
         type: Boolean,
+        default: true,
         desc: 'Is the project public?'
     },
     org: {
@@ -29,6 +30,11 @@ const knownOptions = {
     path: {
         type: String,
         desc: 'Where to create the new project',
+        hidden: true
+    },
+    repo: {
+        type: String,
+        desc: 'The URL of the GitHub repository',
         hidden: true
     }
 };
