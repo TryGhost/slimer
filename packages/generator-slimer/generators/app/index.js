@@ -161,6 +161,8 @@ module.exports = class extends Generator {
         if (!this.options.skipTest) { // @TODO add this option?
             this.composeWith(require.resolve('../test'), this.props);
         }
+
+        this.composeWith(require.resolve('../lint'), this.props);
     }
 
     writing() {
