@@ -1,7 +1,8 @@
 'use strict';
-const Generator = require('../../lib/Generator');
 const _ = require('lodash');
 const mkdirp = require('mkdirp');
+const chalk = require('chalk');
+const Generator = require('../../lib/Generator');
 const TYPES = ['app', 'module', 'pkg', 'mono'];
 
 // These are the options that can be passed in as flags e.g. --foo=bar
@@ -144,5 +145,9 @@ module.exports = class extends Generator {
         if (this.props.public) {
             this.composeWith(require.resolve('../license'), this.props);
         }
+    }
+
+    end() {
+        this.log(chalk.green('Slimer') + ' has finished creating ' + chalk.cyan(this.props.name));
     }
 };
