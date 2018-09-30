@@ -156,8 +156,11 @@ module.exports = class extends Generator {
             this.composeWith(require.resolve('../license'), this.props);
         }
 
-        // Mono repos don't get base node setup
         if (this.props.type !== 'mono') {
+            // @TODO add additional eslintignore for mono repos
+            this.composeWith(require.resolve('../lerna'), this.props);
+        } else {
+            // Mono repos don't get base node setup
             this.composeWith(require.resolve('../node'), this.props);
         }
 

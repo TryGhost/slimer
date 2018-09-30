@@ -1,0 +1,17 @@
+{
+  "private": true,
+  "repository": "<%= repo %>",
+  "author": "Ghost Foundation",
+  "license": "MIT",
+  "workspaces": [
+    "packages/*"
+  ],
+  "eslintIgnore": [
+    "**/node_modules/**"
+  ],
+  "scripts": {
+    "dev": "echo \"Implement me!\"",
+    "setup": "lerna bootstrap"
+  },
+  "devDependencies": {}
+}
