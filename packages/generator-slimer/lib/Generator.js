@@ -21,7 +21,7 @@ module.exports = class extends Generator {
             _.each(this.knownArguments, (value, key) => this.argument(key, value));
             _.each(this.knownOptions, (value, key) => this.option(key, value));
         } catch (err) {
-            this.log(`${chalk.red('error')} Unable to continue: ${err.message}`);
+            this.log(`${chalk.red('error')} Unable to continue: ${err.stack}`);
             process.exit(1);
         }
     }
