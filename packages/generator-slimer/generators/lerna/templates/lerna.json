@@ -10,6 +10,8 @@
         }
     },
     "local": {
-        "repo": "<%= repo %>"
+        "public": "<%= public %>",
+        "repo": "<%= repo %>",
+        "scope": "<%= scope %>"
     }
 }

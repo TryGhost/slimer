@@ -6,11 +6,20 @@ const mkdirp = require('mkdirp');
 const shipScript = 'lerna publish';
 
 const knownOptions = {
+    public: {
+        type: Boolean,
+        default: true,
+        desc: 'Is the project public?'
+    },
     org: {
         type: String,
-        required: true,
         default: 'TryGhost',
         desc: 'GitHub Organisation'
+    },
+    scope: {
+        type: String,
+        default: '',
+        desc: 'NPM Scope name'
     },
     repoName: {
         type: String,
@@ -52,10 +61,14 @@ module.exports = class extends Generator {
         );
 
         // @TODO: add scope and publicness to local data in lerna.json
-        this.fs.copy(
+        this.fs.copyTpl(
             this.templatePath('lerna.json'),
             this.destinationPath('lerna.json'),
-            {repo}
+            {
+                repo,
+                public: this.props.public,
+                scope: this.props.scope
+            }
         );
     }
 

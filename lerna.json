@@ -10,8 +10,8 @@
         }
     },
     "local": {
-        "scope": "@tryghost",
         "public": true,
-        "repo": "https://github.com/TryGhost/slimer"
+        "repo": "https://github.com/TryGhost/slimer",
+        "scope": "@tryghost"
     }
 }
