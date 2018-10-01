@@ -4,7 +4,7 @@ const cliYo = require('./cli-yo');
 const fs = require('./fs-utils');
 const ui = require('../ui');
 
-module.exports = (argv) => {
+module.exports = (argv, cb) => {
     debug('command start');
 
     // Check if this is a mono repo, and if so load in any extra config
@@ -19,5 +19,5 @@ module.exports = (argv) => {
     })(argv.type)}`);
 
     // Call the generator
-    return cliYo.callGenerator('@tryghost/slimer', argv);
+    return cliYo.callGenerator('@tryghost/slimer', argv, cb);
 };

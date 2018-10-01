@@ -81,10 +81,14 @@ class CliYo {
 
         return this.findGenerator(name, (Generator) => {
             let obj = this.buildCallObj(Generator, argv);
+            let generator = env.create(Generator.namespace, obj);
 
             debug('init with', obj);
 
-            return env.create(Generator.namespace, obj).run(cb);
+            return generator.run(() => {
+                debug('return with', generator.props);
+                return _.isFunction(cb) ? cb(generator.props) : generator.props;
+            });
         });
     }
 }
