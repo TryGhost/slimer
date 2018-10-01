@@ -52,7 +52,6 @@ module.exports = class extends Generator {
         // For mono repos, we use a base https URL, so that we can use it to construct subpackage URLs.
         let repo = `https://github.com/${this.props.org}/${this.props.repoName}`;
 
-        // @TODO maybe clean up package.json in favour of lerna.json
         // Add package.json file (super important!)
         this.fs.copyTpl(
             this.templatePath('package.json'),
@@ -60,7 +59,7 @@ module.exports = class extends Generator {
             {repo}
         );
 
-        // @TODO: add scope and publicness to local data in lerna.json
+        // This includes some local settings which we use when generating sub packages
         this.fs.copyTpl(
             this.templatePath('lerna.json'),
             this.destinationPath('lerna.json'),
