@@ -157,7 +157,6 @@ module.exports = class extends Generator {
         }
 
         if (this.props.type === 'mono') {
-            // @TODO add additional eslintignore for mono repos
             this.composeWith(require.resolve('../lerna'), this.props);
         } else {
             // Mono repos don't get base node setup

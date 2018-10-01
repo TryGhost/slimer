@@ -36,6 +36,13 @@ module.exports = class extends Generator {
                 this.destinationPath('test/.eslintrc.js')
             );
         }
+
+        if (this.props.type === 'mono') {
+            this.fs.copy(
+                this.templatePath('lerna.eslintignore'),
+                this.destinationPath('.eslintignore')
+            );
+        }
     }
 
     // We use default, so that writing can be used to add more scripts after this
