@@ -6,7 +6,8 @@
   "author": "Ghost Foundation",
   "license": "MIT",
   "files": [
-    "generators"
+    "generators",
+    "lib"
   ],
   "keywords": [
     "yeoman-generator",
