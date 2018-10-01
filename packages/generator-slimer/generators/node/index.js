@@ -2,6 +2,9 @@
 const Generator = require('../../lib/Generator');
 const _ = require('lodash');
 
+// "ship": STATUS=$(git status --porcelain); echo $STATUS; if [ -z \"$STATUS\" ]; then COMMAND && git push --follow-tags; fi
+const shipScript = 'STATUS=$(git status --porcelain); echo $STATUS; if [ -z "$STATUS" ]; then SHIPCOMMAND && git push --follow-tags; fi';
+
 const knownOptions = {
     type: {
         type: String,
@@ -99,5 +102,32 @@ module.exports = class extends Generator {
     install() {
         // Lodash, the one dependency we use everywhere & don't usually install without a caret
         this.yarnInstall(['lodash', 'bluebird', 'ghost-ignition']);
+    }
+
+    _ship() {
+        // Mono package shipping is handled by the root package
+        if (this.props.type === 'pkg') {
+            return;
+        }
+
+        let shipCmd = this.props.type === 'module' ? 'yarn publish' : 'yarn version';
+
+        // Handle shipping in package.json scripts
+        let destination = this.fs.readJSON(this.destinationPath('package.json'));
+        if (destination) {
+            if (!this.props.skipTest && destination.scripts.test) {
+                // "preship": "yarn test",
+                destination.scripts.preship = 'yarn test';
+            }
+
+            // "ship": "STATUS=$(git status --porcelain); echo $STATUS; if [ -z \"$STATUS\" ]; then COMMAND && git push --follow-tags; fi",
+            destination.scripts.ship = shipScript.replace('SHIPCOMMAND', shipCmd);
+
+            this.fs.writeJSON(this.destinationPath('package.json'), destination);
+        }
+    }
+
+    writing() {
+        this._ship();
     }
 };

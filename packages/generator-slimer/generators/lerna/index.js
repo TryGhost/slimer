@@ -2,8 +2,8 @@
 const Generator = require('../../lib/Generator');
 const mkdirp = require('mkdirp');
 
-// "ship": "lerna publish",
-const shipScript = 'lerna publish';
+// "ship": "STATUS=$(git status --porcelain); echo $STATUS; if [ -z \"$STATUS\" ]; then lerna publish; fi"
+const shipScript = 'STATUS=$(git status --porcelain); echo $STATUS; if [ -z "$STATUS" ]; then lerna publish; fi';
 
 const knownOptions = {
     public: {
@@ -81,7 +81,7 @@ module.exports = class extends Generator {
                 destination.scripts.preship = 'yarn test';
             }
 
-            // "ship": "lerna publish",
+            // "ship": "STATUS=$(git status --porcelain); echo $STATUS; if [ -z \"$STATUS\" ]; then lerna publish; fi"
             destination.scripts.ship = shipScript;
 
             this.fs.writeJSON(this.destinationPath('package.json'), destination);
