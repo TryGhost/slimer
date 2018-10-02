@@ -122,7 +122,7 @@ module.exports = class extends Generator {
         });
     }
 
-    _configureDestination() {
+    configuring() {
         // Set destination root that will be used by Yeoman from here on
         this.destinationRoot(this.props.path);
         // Ensure that path exists
@@ -131,26 +131,10 @@ module.exports = class extends Generator {
         this.log('Created new folder', this.destinationRoot());
     }
 
-    // Add .editorconfig file, except if this project is a mono repo package.
-    _configureEditorConfig() {
-        if (this.props.type !== 'pkg') {
-            this.fs.copy(
-                this.templatePath('.editorconfig'),
-                this.destinationPath('.editorconfig')
-            );
-        }
-    }
-
-    // Configuring is for creating "config" files
-    configuring() {
-        // First, ensure we have the correct destination for all of our files
-        this._configureDestination();
-
-        // Next, add our default .editorconfig file
-        this._configureEditorConfig();
-    }
-
     default() {
+        // Next, add our default .editorconfig file
+        this.composeWith(require.resolve('../editorconfig', this.props));
+
         // Public projects require an MIT license
         if (this.props.public) {
             this.composeWith(require.resolve('../license'), this.props);
