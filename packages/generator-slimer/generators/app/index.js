@@ -64,8 +64,7 @@ module.exports = class extends Generator {
 
         this._initNaming(name);
 
-        this.log('Initialized');
-        this.log(this.props);
+        this.log(chalk.green('Slimer') + ' will create new project with the following settings:', JSON.stringify(this.props, null, 2));
     }
 
     // What gets passed to us is just the folder name
@@ -97,8 +96,6 @@ module.exports = class extends Generator {
     }
 
     prompting() {
-        this.log(`Welcome!`);
-
         const prompts = [
             {
                 type: 'list',
@@ -127,8 +124,6 @@ module.exports = class extends Generator {
         this.destinationRoot(this.props.path);
         // Ensure that path exists
         mkdirp(this.destinationRoot());
-
-        this.log('Created new folder', this.destinationRoot());
     }
 
     default() {
