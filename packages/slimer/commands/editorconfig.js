@@ -7,10 +7,7 @@ exports.id = 'editorconfig';
 exports.flags = 'editorconfig';
 
 // Description for the top level command
-exports.desc = 'Rewrite the local editor config';
-
-// Descriptions for the individual params
-exports.paramsDesc = ['Name for the project folder'];
+exports.desc = 'Rewrite the local .editorconfig';
 
 // What to do when this command is executed
 exports.run = (argv, cb) => {
