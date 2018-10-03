@@ -33,6 +33,7 @@ exports.desc = 'Start a new project';
 // Descriptions for the individual params
 exports.paramsDesc = ['Name for the project folder'];
 
+// Configure all the options
 exports.setup = (sywac) => {
     // Loop over the options we loaded from Yeoman
     // and load these into sywac
