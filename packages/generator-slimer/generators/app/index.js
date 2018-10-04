@@ -128,7 +128,7 @@ module.exports = class extends Generator {
 
     default() {
         // Next, add our default .editorconfig file
-        this.composeWith(require.resolve('../editorconfig', this.props));
+        this.composeWith(require.resolve('../editorconfig'), this.props);
 
         // Public projects require an MIT license
         if (this.props.public) {
