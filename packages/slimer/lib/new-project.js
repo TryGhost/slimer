@@ -2,7 +2,7 @@ const debug = require('debug')('slimer:new');
 const _ = require('lodash');
 const cliYo = require('./cli-yo');
 const fs = require('./fs-utils');
-const ui = require('../ui');
+const ui = require('@tryghost/pretty-cli').ui;
 
 module.exports = (argv, cb) => {
     debug('command start');
@@ -11,7 +11,7 @@ module.exports = (argv, cb) => {
     _.merge(argv, fs.loadMonoConfig());
 
     // Fun bit of UI logic to print a useful message
-    ui.log(`Will create new project "${argv.name}" ${((type) => {
+    ui.log.info(`Will create new project "${argv.name}" ${((type) => {
         if (type) {
             return `with type ${type}.`;
         }
