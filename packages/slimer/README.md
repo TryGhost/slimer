@@ -4,11 +4,11 @@ A set of tools for working on Ghost and the surrounding ecosystem, provided via 
 
 ## Install
 
-- `npm i -g @tryghost/slimer-cli`
+- `npm install --global @tryghost/slimer-cli`
 
 ## Develop
 
-This is a mono repository, managed with [lerna](https://lernajs.io/). 
+This is a mono repository, managed with [lerna](https://lernajs.io/).
 
 Follow the instructions for the top-level repo.
 

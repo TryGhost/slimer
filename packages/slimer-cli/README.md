@@ -4,13 +4,13 @@ Provides the cli bindings for the slimer package.
 
 ## Install
 
-- `npm i -g @tryghost/slimer-cli`
+- `npm iinstall --global @tryghost/slimer-cli`
 
 ## Develop
 
 This is a mono repository, managed with [lerna](https://lernajs.io/).
 
-Follow the instructions for the top-level repo. 
+Follow the instructions for the top-level repo.
 
 ## Test
 

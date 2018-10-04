@@ -16,7 +16,7 @@ The `slimer new` command is capable of creating 4 different types of project:
 
 Add me to your globals:
 
-- `npm i -g @tryghost/slimer-cli`
+- `npm install --global @tryghost/slimer-cli`
 
 
 ## Usage
