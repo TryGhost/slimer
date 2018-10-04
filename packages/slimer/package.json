@@ -1,6 +1,6 @@
 {
   "name": "@tryghost/slimer",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "tbc",
   "repository": "https://github.com/TryGhost/slimer/tree/master/packages/slimer",
   "author": "Ghost Foundation",
@@ -21,8 +21,8 @@
     "sinon": "6.3.4"
   },
   "dependencies": {
-    "@tryghost/generator-slimer": "^1.0.6",
-    "@tryghost/pretty-cli": "^1.1.0",
+    "@tryghost/generator-slimer": "^1.0.7",
+    "@tryghost/pretty-cli": "^1.1.1",
     "bluebird": "^3.5.2",
     "debug": "^4.0.1",
     "find-root": "^1.1.0",
