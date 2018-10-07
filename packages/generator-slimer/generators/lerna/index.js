@@ -2,8 +2,9 @@
 const Generator = require('../../lib/Generator');
 const mkdirp = require('mkdirp');
 
-// "ship": "STATUS=$(git status --porcelain); echo $STATUS; if [ -z \"$STATUS\" ]; then lerna publish; fi"
-const shipScript = 'STATUS=$(git status --porcelain); echo $STATUS; if [ -z "$STATUS" ]; then lerna publish; fi';
+// lerna handles uncommitted changes for us
+// "ship": "lerna"
+const shipScript = 'lerna publish';
 
 const knownOptions = {
     public: {
@@ -89,14 +90,5 @@ module.exports = class extends Generator {
 
     writing() {
         this._ship();
-    }
-
-    install() {
-        let options = {dev: true, exact: true};
-        // This is a mono repo
-        options['ignore-workspace-root-check'] = true;
-
-        // Add lerna as a dependency
-        this.yarnInstall(['lerna'], options);
     }
 };
