@@ -91,8 +91,8 @@ module.exports = class extends Generator {
         this.props.repoName = this.props.repoName || name;
         // npm name rule, we try to add a scope, else use the base name, in kebabCase
         this.props.npmName = `${this.props.scope}${this.props.npmName || _.kebabCase(name)}`;
-        // Project name, should be Properly Capitalised For the README! If it starts with mg-, convert to Migrate
-        this.props.projectName = this.props.projectName || _.startCase(name.replace(/^mg-/, 'Migrate '));
+        // Project name, should be Properly Capitalised For the README! If it starts with mg- or kg- convert to Migrate/Koenig
+        this.props.projectName = this.props.projectName || _.startCase(name.replace(/^mg-/, 'Migrate ').replace(/^kg-/, 'Koenig '));
     }
 
     prompting() {
