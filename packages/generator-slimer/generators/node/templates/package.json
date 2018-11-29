@@ -8,7 +8,13 @@
   "scripts": {
     "dev": "echo \"Implement me!\""
   },
-  <% if (publicScoped) { %>
+  <% if (isPublic) { %>
+    "files": [
+      "<%= main %>",
+      "lib"
+    ],
+  <% } %>
+  <% if (isPublicScoped) { %>
   "publishConfig": {
     "access": "public"
   },

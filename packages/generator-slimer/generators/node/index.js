@@ -84,7 +84,8 @@ module.exports = class extends Generator {
             {
                 npmName: this.props.npmName,
                 license: this.props.public ? '"license": "MIT",' : '"private": true,',
-                publicScoped: this.props.public && _.startsWith(this.props.npmName, '@'),
+                isPublicScoped: this.props.public && _.startsWith(this.props.npmName, '@'),
+                isPublic: this.props.public,
                 repo: repo,
                 main: this.props.main
             }
