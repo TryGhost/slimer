@@ -1,4 +1,4 @@
-const cliYo = require('../lib/cli-yo');
+const cliYo = require('../../lib/cli-yo');
 
 // Internal ID in case we need one.
 exports.id = 'editorconfig';
