@@ -17,6 +17,28 @@ fsUtils.pathExists = (...args) => {
     return fs.existsSync(path.join(...args));
 };
 
+module.exports.isMonoPackage = () => {
+    let rootDir = fsUtils.getRootDir(process.cwd());
+
+    // If we are inside a package directory, we update rootDir
+    // To be the mono repo root
+    if (process.cwd() === rootDir) {
+        let packagePath = path.resolve(rootDir, '../');
+        if (/packages$/.test(packagePath)) {
+            rootDir = fsUtils.getRootDir(packagePath);
+        }
+    }
+
+    // It's only a mono package, if the lerna.json exists at the root
+    // And the current dir is not the root
+    if (fsUtils.pathExists(rootDir, 'lerna.json') && process.cwd() !== rootDir) {
+        return true;
+    }
+
+    return false;
+};
+
+// Used to load config when creating a new package
 module.exports.loadMonoConfig = () => {
     let rootDir = fsUtils.getRootDir(process.cwd());
 
