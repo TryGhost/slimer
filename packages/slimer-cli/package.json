@@ -8,6 +8,9 @@
   "bin": {
     "slimer": "./bin/slimer.js"
   },
+  "files": [
+    ".bin"
+  ],
   "scripts": {
     "dev": "slimer",
     "slimer": "slimer",

@@ -12,6 +12,11 @@
     "lint": "eslint . --ext .js --cache",
     "posttest": "yarn lint"
   },
+  "files": [
+    "index.js",
+    "lib",
+    "commands"
+  ],
   "publishConfig": {
     "access": "public"
   },
