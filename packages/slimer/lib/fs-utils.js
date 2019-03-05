@@ -46,6 +46,17 @@ fsUtils.isMonoPackage = () => {
     return false;
 };
 
+fsUtils.isMonoRepo = () => {
+    // We don't use resolve, because we deliberately only want to know if we are at the top level
+    let rootDir = fsUtils.getRootDir(process.cwd());
+
+    if (!fsUtils.pathExists(rootDir, LERNA_FILENAME)) {
+        return false;
+    }
+
+    return true;
+};
+
 // Used to load config when creating a new package
 // @TODO: why don't we need to resolve the root dir here?
 fsUtils.loadMonoConfig = () => {
@@ -86,5 +97,6 @@ fsUtils.isPublic = async () => {
 module.exports = {
     loadMonoConfig: fsUtils.loadMonoConfig,
     isMonoPackage: fsUtils.isMonoPackage,
+    isMonoRepo: fsUtils.isMonoRepo,
     isPublic: fsUtils.isPublic
 };

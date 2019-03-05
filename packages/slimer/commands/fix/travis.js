@@ -19,6 +19,8 @@ exports.run = async (argv, cb) => {
     if (fs.isMonoPackage()) {
         ui.log.ok('.travis.yml exists at project root');
         return;
+    } else if (fs.isMonoRepo()) {
+        argv.type = 'mono';
     }
 
     if (!argv.public) {

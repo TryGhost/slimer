@@ -44,7 +44,8 @@ module.exports = class extends Generator {
             this.templatePath('.travis.yml'),
             this.destinationPath('.travis.yml'),
             {
-                nodeVersions
+                nodeVersions,
+                type: this.props.type
             }
         );
     }
