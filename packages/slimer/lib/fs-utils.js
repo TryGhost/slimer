@@ -89,14 +89,26 @@ fsUtils.loadPkgConfig = () => {
 fsUtils.isPublic = async () => {
     let pkgJSON = fsUtils.loadPkgConfig();
     let repoUrl = pkgJSON.repository.url || pkgJSON.repository;
-    let repo = repoUrl.match(/github\.com\/(.*)?$/)[1];
+    let repo = repoUrl.match(/github\.com[/:](.*)?$/)[1];
 
     return await isPublic(repo);
+};
+
+fsUtils.getType = () => {
+    if (fsUtils.isMonoPackage()) {
+        return 'pkg';
+    } else if (fsUtils.isMonoRepo()) {
+        return 'mono';
+    }
+
+    let pkgJSON = fsUtils.loadPkgConfig();
+    return pkgJSON.main === 'app.js' ? 'app' : 'module';
 };
 
 module.exports = {
     loadMonoConfig: fsUtils.loadMonoConfig,
     isMonoPackage: fsUtils.isMonoPackage,
     isMonoRepo: fsUtils.isMonoRepo,
-    isPublic: fsUtils.isPublic
+    isPublic: fsUtils.isPublic,
+    getType: fsUtils.getType
 };

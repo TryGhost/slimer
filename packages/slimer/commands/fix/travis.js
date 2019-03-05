@@ -15,12 +15,11 @@ exports.desc = 'Rewrite the local .travis.yml';
 exports.run = async (argv, cb) => {
     // @TODO make a generic tool that can read type and public into argv instead of this
     argv.public = await fs.isPublic();
+    argv.type = fs.getType();
 
-    if (fs.isMonoPackage()) {
-        ui.log.ok('.travis.yml exists at project root');
+    if (argv.type === 'pkg') {
+        ui.log.error('.travis.yml should exist at project root');
         return;
-    } else if (fs.isMonoRepo()) {
-        argv.type = 'mono';
     }
 
     if (!argv.public) {
