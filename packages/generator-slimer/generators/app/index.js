@@ -152,6 +152,10 @@ module.exports = class extends Generator {
         if (this.props.type !== 'pkg') {
             this.composeWith(require.resolve('../gitroot'), this.props);
         }
+
+        if (this.props.type !== 'pkg' && this.props.public) {
+            this.composeWith(require.resolve('../travisyml'), this.props);
+        }
     }
 
     writing() {
