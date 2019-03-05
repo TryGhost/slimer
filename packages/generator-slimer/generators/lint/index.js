@@ -3,6 +3,8 @@ const Generator = require('../../lib/Generator');
 
 // "lint": "eslint . --ext .js --cache",
 const lintScript = 'eslint . --ext .js --cache';
+//  "lint": "lerna run lint",
+const monoLintScript = 'lerna run lint';
 
 const knownOptions = {
     type: {
@@ -47,14 +49,17 @@ module.exports = class extends Generator {
 
     // We use default, so that writing can be used to add more scripts after this
     default() {
-        // Add lint script to package.json
         const destination = this.fs.readJSON(this.destinationPath('package.json'));
         if (destination) {
-            // "lint": "eslint . --ext .js --cache",
-            destination.scripts.lint = lintScript;
+            // Add lint script to package.json
+            if (this.props.type === 'mono') {
+                destination.scripts.lint = monoLintScript;
+            } else {
+                destination.scripts.lint = lintScript;
+            }
 
-            // @TODO add skipTest option?
-            if (!this.props.skipTest && destination.scripts.test) {
+            // Add posttest, but not for mono repos, or repos without tests
+            if (this.props.type !== 'mono' && !this.props.skipTest && destination.scripts.test) {
                 // "posttest": "yarn lint",
                 destination.scripts.posttest = 'yarn lint';
             }
