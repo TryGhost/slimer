@@ -11,7 +11,8 @@ cache:
 <% if (type === 'mono')  { -%>
 # We need to use yarn to use lerna #yakshaving
 install:
-  yarn global add lerna
+  - yarn global add lerna
+  - yarn
 script:
   yarn test
 <% } %>
