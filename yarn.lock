@@ -58,7 +58,7 @@
   version "0.7.1"
   resolved "https://registry.yarnpkg.com/@sinonjs/text-encoding/-/text-encoding-0.7.1.tgz#8da5c6530915653f3a1f38fd5f101d8c3f8079c5"
 
-"@tryghost/pretty-cli@^1.1.4":
+"@tryghost/pretty-cli@1.1.4", "@tryghost/pretty-cli@^1.1.4":
   version "1.1.4"
   resolved "https://registry.yarnpkg.com/@tryghost/pretty-cli/-/pretty-cli-1.1.4.tgz#e68bbdbfca7ae4bad0a1778809c253828b03d871"
   dependencies:
