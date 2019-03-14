@@ -25,25 +25,21 @@ module.exports = class extends Generator {
     }
 
     configuring() {
-        // Add .eslintrc.js file (can be extended)
-        this.fs.copy(
-            this.templatePath('.eslintrc.js'),
-            this.destinationPath('.eslintrc.js')
-        );
-
-        if (!this.props.skipTest) {
-            // Add test/.eslintrc.js file (can be extended)
+        // Don't lint top-level of mono repos
+        if (this.props.type !== 'mono') {
+            // Add .eslintrc.js file (can be extended)
             this.fs.copy(
-                this.templatePath('test/.eslintrc.js'),
-                this.destinationPath('test/.eslintrc.js')
+                this.templatePath('.eslintrc.js'),
+                this.destinationPath('.eslintrc.js')
             );
-        }
 
-        if (this.props.type === 'mono') {
-            this.fs.copy(
-                this.templatePath('lerna.eslintignore'),
-                this.destinationPath('.eslintignore')
-            );
+            if (!this.props.skipTest) {
+                // Add test/.eslintrc.js file (can be extended)
+                this.fs.copy(
+                    this.templatePath('test/.eslintrc.js'),
+                    this.destinationPath('test/.eslintrc.js')
+                );
+            }
         }
     }
 
@@ -52,7 +48,7 @@ module.exports = class extends Generator {
         const destination = this.fs.readJSON(this.destinationPath('package.json'));
         if (destination) {
             // Add lint script to package.json
-            if (this.props.type === 'mono') {
+            if (this.props.type !== 'mono') {
                 destination.scripts.lint = monoLintScript;
             } else {
                 destination.scripts.lint = lintScript;
