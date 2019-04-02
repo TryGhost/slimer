@@ -2,6 +2,13 @@
   "extends": [
     "config:base",
      "group:jsTestMonMajor",
-     "group:linters"
-  ]
+     "group:linters",
+     ":maintainLockFilesWeekly",
+     "schedule:earlyMondays",
+     ":automergeMinor"
+  ],
+  "travis": { "enabled": true },
+  "node": {
+    "supportPolicy": ["lts_latest"]
+   }
 }
