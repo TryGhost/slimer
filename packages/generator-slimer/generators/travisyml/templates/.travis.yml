@@ -8,6 +8,10 @@ cache:
   directories:
     - node_modules
 
+branches:
+  except:
+  - "/^renovate\\/.+$/"
+
 <% if (type === 'mono')  { -%>
 # We need to use yarn to use lerna #yakshaving
 install:
