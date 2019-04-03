@@ -6,10 +6,13 @@ const ui = require('@tryghost/pretty-cli').ui;
 exports.id = 'travis';
 
 // The command to run and any params
-exports.flags = 'travis';
+exports.flags = 'travis <supportPolicy>';
 
 // Description for the top level command
 exports.desc = 'Rewrite the local .travis.yml';
+
+// Descriptions for the individual params
+exports.paramsDesc = ['A renovate-style support policy (autodetected)'];
 
 // What to do when this command is executed
 exports.run = async (argv, cb) => {
