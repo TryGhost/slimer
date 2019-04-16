@@ -75,6 +75,10 @@ module.exports = class extends Generator {
             this.props.scope = this.props.scope || '@nexes';
         }
 
+        if (this.props.type === 'mono') {
+            this.props.scope = this.props.scope || '@tryghost';
+        }
+
         // Ensure scopes are properly formatted when present
         if (this.props.scope !== '' && !_.endsWith(this.props.scope, '/')) {
             this.props.scope += '/';

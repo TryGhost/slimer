@@ -38,6 +38,9 @@ module.exports = class extends Generator {
 
     initializing() {
         super.initializing();
+
+        // Remove any scope formatting here
+        this.props.scope = this.props.scope.replace(/\/$/, '');
     }
 
     configuring() {
