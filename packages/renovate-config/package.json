@@ -98,6 +98,7 @@
     },
     "automergeSilentTestLintNonMajor": {
       "description": "Silently automerge all non-major testing & linting updates",
+      "separateMinorPatch": false,
       "packageRules": [
         {
           "extends": "@tryghost:pkgTestLint",
@@ -114,7 +115,8 @@
         "@tryghost:base",
         "@tryghost:automergePatchSilent",
         "@tryghost:automergeSilentTestLintNonMajor"
-      ]
+      ],
+      "separateMultipleMajor": false
     },
     "theme": {
       "description": "A config for Ghost themes",
@@ -130,6 +132,7 @@
           "major": {
             "groupName": "Build Tools"
           },
+          "separateMinorPatch": false,
           "minor": {
             "automerge": true,
             "automergeType": "branch"
