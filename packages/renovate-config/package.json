@@ -1,0 +1,130 @@
+{
+  "name": "@tryghost/renovate-config",
+  "version": "0.0.0",
+  "repository": "https://github.com/TryGhost/slimer/tree/master/packages/renovate-config",
+  "author": "Ghost Foundation",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "renovate-config": {
+    "base": {
+      "description": "Base configuration rules",
+      "extends": [
+        "config:base",
+        ":disableRateLimiting",
+        ":maintainLockFilesMonthly",
+        "schedule:earlyMondays"
+      ]
+    },
+    "pkgCSS": {
+      "description": "All CSS preprocessors",
+      "packagePatterns": ["^postcss", "^css"],
+      "packageNames": ["autoprefixer"]
+    },
+    "pkgTestLint": {
+      "description": "All JS testing and linting tools",
+      "extends": [
+        "packages:linters",
+        "packages:jsTest"
+      ],
+      "packageNames": [
+        "nodemon",
+        "rewire",
+        "tmp"
+      ]
+    },
+    "pkgBuildTools": {
+      "description": "All build tools (gulp, grunt etc)",
+      "packagePatterns": ["^gulp", "^grunt"],
+      "packageNames": ["beeper", "pump"]
+    },
+    "groupCSSNonMajor": {
+      "description": "Group all non-major CSS preprocessor updates",
+      "packageRules": [
+        {
+          "extends": "@tryghost:pkgCSS",
+          "minor": {
+            "groupName": "CSS preprocessors"
+          }
+        }
+      ]
+    },
+    "groupTestLintNonMajor": {
+      "description": "Group all non-major testing & linting updates",
+      "packageRules": [
+        {
+          "extends": "@tryghost:pkgTestLint",
+          "minor": {
+            "groupName": "Test & linting packages"
+          }
+        }
+      ]
+    },
+    "groupBuildToolsNonMajor": {
+      "description": "Group all non-major build tool updates",
+      "packageRules": [
+        {
+          "extends": "@tryghost:pkgBuildTools",
+          "minor": {
+            "groupName": "Build Tool"
+          }
+        }
+      ]
+    },
+    "automergePatchSilent": {
+      "description": "Silently merge patches, PR merge minors",
+      "separateMinorPatch": true,
+      "automerge": false,
+      "minor": {
+        "automerge": true,
+        "automergeType": "pr"
+      },
+      "patch": {
+        "automerge": true,
+        "automergeType": "branch"
+      }
+    },
+    "automergeSilentTestLintNonMajor": {
+      "description": "Silently automerge all non-major testing & linting updates",
+      "packageRules": [
+        {
+          "extends": "@tryghost:pkgTestLint",
+          "minor": {
+            "automerge": true,
+            "automergeType": "branch"
+          }
+        }
+      ]
+    },
+    "quietJS": {
+      "description": "A quiet config",
+      "extends": [
+        "@tryghost:base",
+        "@tryghost:automergePatchSilent",
+        "@tryghost:automergeSilentTestLintNonMajor"
+      ]
+    },
+    "theme": {
+      "description": "A config for Ghost themes",
+      "extends": [
+        "@tryghost:base",
+        "schedule:monthly",
+        "@tryghost:groupCSSNonMajor",
+        "@tryghost:automergePatchSilent"
+      ],
+      "packageRules": [
+        {
+          "extends": "@tryghost:pkgBuildTools",
+          "major": {
+            "groupName": "Build Tools"
+          },
+          "minor": {
+            "automerge": true,
+            "automergeType": "branch"
+          }
+        }
+      ]
+    }
+  }
+}
