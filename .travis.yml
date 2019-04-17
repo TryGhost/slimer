@@ -2,14 +2,13 @@ dist: xenial
 language: node_js
 node_js:
       - 10
-
+  
 cache:
   directories:
     - node_modules
 
-branches:
-  except:
-  - "/^renovate\\/.+$/"
+# Don't run builds for renovate PRs, only renovate pushes
+if: NOT branch =~ /^renovate\\/.+$/ AND type != pull_request
 
 # We need to use yarn to use lerna #yakshaving
 install:
