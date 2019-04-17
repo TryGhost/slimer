@@ -1,6 +1,6 @@
 {
   "name": "@tryghost/renovate-config",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "repository": "https://github.com/TryGhost/slimer/tree/master/packages/renovate-config",
   "author": "Ghost Foundation",
   "license": "MIT",
@@ -19,8 +19,13 @@
     },
     "pkgCSS": {
       "description": "All CSS preprocessors",
-      "packagePatterns": ["^postcss", "^css"],
-      "packageNames": ["autoprefixer"]
+      "packagePatterns": [
+        "^postcss",
+        "^css"
+      ],
+      "packageNames": [
+        "autoprefixer"
+      ]
     },
     "pkgTestLint": {
       "description": "All JS testing and linting tools",
@@ -36,8 +41,14 @@
     },
     "pkgBuildTools": {
       "description": "All build tools (gulp, grunt etc)",
-      "packagePatterns": ["^gulp", "^grunt"],
-      "packageNames": ["beeper", "pump"]
+      "packagePatterns": [
+        "^gulp",
+        "^grunt"
+      ],
+      "packageNames": [
+        "beeper",
+        "pump"
+      ]
     },
     "groupCSSNonMajor": {
       "description": "Group all non-major CSS preprocessor updates",
