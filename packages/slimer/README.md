@@ -1,8 +1,12 @@
 # Slimer
 
-A set of tools for working on Ghost and the surrounding ecosystem, provided via `slimer-cli`.
+Slimer exposes useful tools for working with Node.js repos. Much of this package is a set of commands, and a wrapper for generator-slimer.
+ 
+Access to these tools is provided via `slimer-cli`.
 
 ## Install
+
+Add the CLI to your globals:
 
 - `npm install --global @tryghost/slimer-cli`
 

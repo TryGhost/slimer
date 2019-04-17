@@ -1,10 +1,13 @@
 # Slimer CLI
 
-Provides the cli bindings for the slimer package.
+Provides the CLI bindings for the slimer package. All commands live in slimer. 
+This repo uses @tryghost/pretty-cli to provide a CLI-based interface.
 
 ## Install
 
-- `npm iinstall --global @tryghost/slimer-cli`
+Add me to your globals:
+
+- `npm install --global @tryghost/slimer-cli`
 
 ## Develop
 

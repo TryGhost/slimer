@@ -1,16 +1,6 @@
 # Slimer
 
-A suite of tools for working on Ghost and in the surrounding ecosystem.
-
-It provides the `slimer` CLI tool.
-
-The `slimer new` command is capable of creating 4 different types of project:
-
-- **Pkg:**    create a package inside a mono repo
-- **Mono:**   start a new mono repo with lerna, just like the `slimer` repo
-- **Module:** a simple standalone node module
-- **App:**    a standalone app, based on express
-
+The `slimer` CLI tool automates common tasks when working on Ghost and in the surrounding ecosystem.
 
 ## Install
 
@@ -23,8 +13,9 @@ Add me to your globals:
 
 I aim to be easy to use, if you ever get stuck, try adding `--help` to a command.
 
-- `slimer new <name>`
 - Run `slimer` or `slimer --help` for full usage details
+- Try `slimer new --help` for information on how to create new projects
+- Try `slimer fix --help` to see common maintenance tasks
 
 
 ## Develop
