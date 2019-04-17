@@ -102,9 +102,11 @@
       "packageRules": [
         {
           "extends": "@tryghost:pkgTestLint",
-          "minor": {
-            "automerge": true,
-            "automergeType": "branch"
+          "groupName": "Test & linting packages",
+          "automerge": true,
+          "automergeType": "branch",
+          "major": {
+            "automerge": false
           }
         }
       ]
