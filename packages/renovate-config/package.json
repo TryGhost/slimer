@@ -50,36 +50,30 @@
         "pump"
       ]
     },
-    "groupCSSNonMajor": {
-      "description": "Group all non-major CSS preprocessor updates",
+    "groupCSS": {
+      "description": "Group all CSS preprocessor updates",
       "packageRules": [
         {
           "extends": "@tryghost:pkgCSS",
-          "minor": {
-            "groupName": "CSS preprocessors"
-          }
+          "groupName": "CSS preprocessors"
         }
       ]
     },
-    "groupTestLintNonMajor": {
-      "description": "Group all non-major testing & linting updates",
+    "groupTestLint": {
+      "description": "Group all testing & linting updates",
       "packageRules": [
         {
           "extends": "@tryghost:pkgTestLint",
-          "minor": {
-            "groupName": "Test & linting packages"
-          }
+          "groupName": "Test & linting packages"
         }
       ]
     },
-    "groupBuildToolsNonMajor": {
-      "description": "Group all non-major build tool updates",
+    "groupBuildTools": {
+      "description": "Group all build tool updates",
       "packageRules": [
         {
           "extends": "@tryghost:pkgBuildTools",
-          "minor": {
-            "groupName": "Build Tool"
-          }
+          "groupName": "Build Tool"
         }
       ]
     },
@@ -125,7 +119,7 @@
       "extends": [
         "@tryghost:base",
         "schedule:monthly",
-        "@tryghost:groupCSSNonMajor",
+        "@tryghost:groupCSS",
         "@tryghost:automergePatchSilent"
       ],
       "packageRules": [
