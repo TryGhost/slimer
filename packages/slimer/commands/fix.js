@@ -17,4 +17,12 @@ exports.ignore = ['<subcommand>', '[args]'],
 // Configure all the options
 exports.setup = (sywac) => {
     sywac.commandDirectory('fix');
+
+    sywac.example('$0 travis', {
+        desc: 'Rewrite the local travis file'
+    });
+
+    sywac.example('$0 travis lts', {
+        desc: 'Rewrite the local travis file with the "lts" support policy'
+    });
 };

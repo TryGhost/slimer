@@ -28,13 +28,26 @@ exports.flags = 'new <name>';
 exports.aliases = ['create', 'project'];
 
 // Description for the top level command
-exports.desc = 'Start a new project';
+exports.desc = 'Start a new project lala';
 
 // Descriptions for the individual params
 exports.paramsDesc = ['Name for the project folder'];
 
 // Configure all the options
 exports.setup = (sywac) => {
+    sywac.example('$0 MyApp', {
+        desc: 'Create a project called MyApp, will be a package if called inside a monorepo'
+    });
+    sywac.example('$0 MyProject --type=mono', {
+        desc: 'Create a mono repo called MyProject'
+    });
+    sywac.example('$0 MySecretApp --public=false', {
+        desc: 'Create a private project called MySecretApp'
+    });
+    sywac.example('$0 MyApp --skipRepo', {
+        desc: 'Create a project called MyApp without a repo'
+    });
+
     // Loop over the options we loaded from Yeoman
     // and load these into sywac
     _.each(options, (opt) => {
