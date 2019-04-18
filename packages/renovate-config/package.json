@@ -110,7 +110,8 @@
       "extends": [
         "@tryghost:base",
         "@tryghost:automergePatchSilent",
-        "@tryghost:automergeSilentTestLintNonMajor"
+        "@tryghost:automergeSilentTestLintNonMajor",
+        "@tryghost:groupBuildTools"
       ],
       "separateMultipleMajor": false
     },
