@@ -48,7 +48,7 @@ module.exports = class extends Generator {
         const destination = this.fs.readJSON(this.destinationPath('package.json'));
         if (destination) {
             // Add lint script to package.json
-            if (this.props.type !== 'mono') {
+            if (this.props.type === 'mono') {
                 destination.scripts.lint = monoLintScript;
             } else {
                 destination.scripts.lint = lintScript;
