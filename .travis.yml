@@ -3,12 +3,10 @@ language: node_js
 node_js:
       - 10
   
-cache:
-  directories:
-    - node_modules
+cache: yarn
 
-# Don't run builds for renovate PRs, only renovate pushes
-if: NOT branch =~ /^renovate\\/.+$/ AND type != pull_request
+# Don't run builds for renovate PRs
+if: NOT head_branch =~ ^renovate
 
 # We need to use yarn to use lerna #yakshaving
 install:
