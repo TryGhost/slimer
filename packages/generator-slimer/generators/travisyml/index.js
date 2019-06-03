@@ -4,7 +4,7 @@ const _ = require('lodash');
 
 // @TODO: share this somewhere?
 const policies = {
-    lts: [6, 8, 10],
+    lts: [8, 10],
     active: [8, 10, 11],
     current: [11],
     lts_active: [8, 10],
