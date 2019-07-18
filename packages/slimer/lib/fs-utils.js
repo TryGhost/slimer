@@ -86,10 +86,18 @@ fsUtils.loadPkgConfig = () => {
     return require(path.join(rootDir, PKG_FILENAME));
 };
 
-fsUtils.isPublic = async () => {
+fsUtils.getRepo = () => {
     let pkgJSON = fsUtils.loadPkgConfig();
-    let repoUrl = pkgJSON.repository.url || pkgJSON.repository;
-    let repo = repoUrl.match(/github\.com[/:](.*)?$/)[1];
+    let url = pkgJSON.repository.url || pkgJSON.repository;
+    let repo = url.match(/github\.com[/:](.*)?$/)[1];
+    let org = repo.match(/^(.*)?\//)[1];
+    let name = repo.match(/\/(.*?)\.git?/)[1];
+
+    return {url, repo, org, name};
+};
+
+fsUtils.isPublic = async () => {
+    let {repo} = fsUtils.getRepo();
 
     return await isPublic(repo);
 };
@@ -110,5 +118,6 @@ module.exports = {
     isMonoPackage: fsUtils.isMonoPackage,
     isMonoRepo: fsUtils.isMonoRepo,
     isPublic: fsUtils.isPublic,
-    getType: fsUtils.getType
+    getType: fsUtils.getType,
+    getRepo: fsUtils.getRepo
 };
