@@ -6,7 +6,7 @@ module.exports = class extends Generator {
         this.fs.copyTpl(
             this.templatePath('LICENSE'),
             this.destinationPath('LICENSE'),
-            {year: new Date().getFullYear()}
+            {date: `2013-${new Date().getFullYear()}`}
         );
     }
 };
