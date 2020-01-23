@@ -4,11 +4,11 @@ const _ = require('lodash');
 
 // @TODO: share this somewhere?
 const policies = {
-    lts: [8, 10],
-    active: [8, 10, 11],
-    current: [11],
-    lts_active: [8, 10],
-    lts_latest: [10]
+    lts: [10, 12],
+    active: [10, 12, 13],
+    current: [13],
+    lts_active: [10, 12],
+    lts_latest: [12]
 };
 
 const defaultPolicy = 'lts';
