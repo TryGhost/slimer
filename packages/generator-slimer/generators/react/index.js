@@ -89,7 +89,7 @@ module.exports = class extends Generator {
         this.composeWith(require.resolve('../license'), this.props);
     }
 
-    writing() {
+    _writePackageJSON() {
         // Read the existing package.json
         let destination = this.fs.readJSON(this.destinationPath('package.json'));
 
@@ -106,6 +106,26 @@ module.exports = class extends Generator {
         if (destination) {
             this.fs.writeJSON(this.destinationPath('package.json'), destination);
         }
+    }
+
+    _writeREADME() {
+        // Read the existing README.md
+        let destination = this.fs.read(this.destinationPath('README.md'));
+        let title = `# ${this.props.projectName}`;
+
+        // Handle public/private
+        if (destination && !destination.startsWith(title)) {
+            destination = `${title}\n\n${destination}`;
+        }
+
+        if (destination) {
+            this.fs.write(this.destinationPath('README.md'), destination);
+        }
+    }
+
+    writing() {
+        this._writePackageJSON();
+        this._writeREADME();
     }
 
     end() {
