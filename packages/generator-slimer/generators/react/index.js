@@ -1,6 +1,5 @@
 'use strict';
 const Generator = require('../../lib/Generator');
-const insertAfter = require('../../lib/insert-after');
 const _ = require('lodash');
 const chalk = require('chalk');
 
@@ -92,52 +91,8 @@ module.exports = class extends Generator {
         // Next, add our default .editorconfig file
         this.composeWith(require.resolve('../editorconfig'), this.props);
 
-        // Public projects require an MIT license
-        if (this.props.public) {
-            this.composeWith(require.resolve('../license'), this.props);
-        }
-
-        // Edit the package.json
-        // Read the existing package.json
-        let destination = this.fs.readJSON(this.destinationPath('package.json'));
-
-        // Handle public/private
-        if (destination && this.props.public) {
-            if (destination.private) {
-                delete destination.private;
-            }
-            if (!destination.license) {
-                destination = insertAfter(destination, 'version', 'license', 'MIT');
-            }
-        }
-
-        if (destination && !this.props.public) {
-            if (destination.license) {
-                delete destination.license;
-            }
-            if (!destination.private) {
-                destination = insertAfter(destination, 'version', 'private', true);
-            }
-        }
-
-        if (destination) {
-            this.fs.writeJSON(this.destinationPath('package.json'), destination);
-        }
-    }
-
-    writing() {
-        // const copyright = `Copyright (c) ${new Date().getFullYear()} Ghost Foundation`;
-        // const publicCopyright = `${copyright} - Released under the [MIT license](LICENSE).`;
-        // const privateCopyright = `${copyright}. All rights reserved.\n\nThis code is considered closed-source and not for distribution. There is no opensource license associated with this project.`;
-
-        // this.props.copyright = this.props.public ? publicCopyright : privateCopyright;
-
-        // // Create a README.md
-        // this.fs.copyTpl(
-        //     this.templatePath('README.md'),
-        //     this.destinationPath('README.md'),
-        //     this.props
-        // );
+        // Public projects require an MIT license, private projects should NOT have one
+        this.composeWith(require.resolve('../license'), this.props);
     }
 
     end() {

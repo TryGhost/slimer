@@ -131,20 +131,19 @@ module.exports = class extends Generator {
     }
 
     default() {
-        // Next, add our default .editorconfig file
-        this.composeWith(require.resolve('../editorconfig'), this.props);
-
-        // Public projects require an MIT license
-        if (this.props.public) {
-            this.composeWith(require.resolve('../license'), this.props);
-        }
-
+        // Main Prep
         if (this.props.type === 'mono') {
             this.composeWith(require.resolve('../lerna'), this.props);
         } else {
             // Mono repos don't get base node setup
             this.composeWith(require.resolve('../node'), this.props);
         }
+
+        // Next, add our default .editorconfig file
+        this.composeWith(require.resolve('../editorconfig'), this.props);
+
+        // Public projects require an MIT license, private projects should NOT have one
+        this.composeWith(require.resolve('../license'), this.props);
 
         // Tests go first so that lint can interact with the test folder
         if (!this.options.skipTest) { // @TODO add this option?
@@ -163,12 +162,6 @@ module.exports = class extends Generator {
     }
 
     writing() {
-        const copyright = `Copyright (c) ${new Date().getFullYear()} Ghost Foundation`;
-        const publicCopyright = `${copyright} - Released under the [MIT license](LICENSE).`;
-        const privateCopyright = `${copyright}. All rights reserved.\n\nThis code is considered closed-source and not for distribution. There is no opensource license associated with this project.`;
-
-        this.props.copyright = this.props.public ? publicCopyright : privateCopyright;
-
         // Create a README.md
         this.fs.copyTpl(
             this.templatePath('README.md'),

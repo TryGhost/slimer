@@ -61,8 +61,3 @@ To add a new package to the repo:
 - `yarn ship`
 <% } -%>
 <% } -%>
-
-
-# Copyright & License
-
-<%- copyright %>
