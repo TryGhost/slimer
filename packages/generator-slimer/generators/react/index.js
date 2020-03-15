@@ -2,6 +2,7 @@
 const Generator = require('../../lib/Generator');
 const _ = require('lodash');
 const chalk = require('chalk');
+const insertAfter = require('../../lib/insert-after');
 
 // These are the options that can be passed in as flags e.g. --foo=bar
 const knownOptions = {
@@ -54,15 +55,8 @@ module.exports = class extends Generator {
 
     // What gets passed to us is just the folder name
     _initNaming(name) {
-        // # Naming conventions.
-        // by default, we expect to start with props.name (folder name) being either in kebabcase that we want to keep
-        // E.g. mg-medium-export
-        // Or something capitalised, e.g. Ghost
-
         // Repo name rules - it should be the same as the folder name
         this.props.repoName = this.props.repoName || name;
-        // npm name rule, we try to add a scope, else use the base name, in kebabCase
-        this.props.npmName = `${this.props.scope}${this.props.npmName || _.kebabCase(name)}`;
         // Project name, should be Properly Capitalised For the README! If it starts with mg- or kg- convert to Migrate/Koenig
         this.props.projectName = this.props.projectName || _.startCase(name.replace(/^mg-/, 'Migrate ').replace(/^kg-/, 'Koenig '));
     }
@@ -93,6 +87,25 @@ module.exports = class extends Generator {
 
         // Public projects require an MIT license, private projects should NOT have one
         this.composeWith(require.resolve('../license'), this.props);
+    }
+
+    writing() {
+        // Read the existing package.json
+        let destination = this.fs.readJSON(this.destinationPath('package.json'));
+
+        // Handle public/private
+        if (destination) {
+            if (!destination.repository) {
+                destination = insertAfter(destination, 'version', 'repository', `git@github.com:TryGhost/${this.props.repoName}.git`);
+            }
+            if (!destination.author) {
+                destination = insertAfter(destination, 'repository', 'author', 'Ghost Foundation');
+            }
+        }
+
+        if (destination) {
+            this.fs.writeJSON(this.destinationPath('package.json'), destination);
+        }
     }
 
     end() {
