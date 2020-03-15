@@ -28,7 +28,7 @@ exports.flags = 'new <name>';
 exports.aliases = ['create', 'project'];
 
 // Description for the top level command
-exports.desc = 'Start a new project lala';
+exports.desc = 'Start a new project';
 
 // Descriptions for the individual params
 exports.paramsDesc = ['Name for the project folder'];
