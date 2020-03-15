@@ -96,6 +96,12 @@ fsUtils.getRepo = () => {
     return {url, repo, org, name};
 };
 
+fsUtils.getName = () => {
+    let pkgJSON = fsUtils.loadPkgConfig();
+
+    return pkgJSON.name;
+};
+
 fsUtils.isPublic = async () => {
     let {repo} = fsUtils.getRepo();
 
@@ -119,5 +125,6 @@ module.exports = {
     isMonoRepo: fsUtils.isMonoRepo,
     isPublic: fsUtils.isPublic,
     getType: fsUtils.getType,
-    getRepo: fsUtils.getRepo
+    getRepo: fsUtils.getRepo,
+    getName: fsUtils.getName
 };
