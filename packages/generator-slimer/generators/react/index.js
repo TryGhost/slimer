@@ -87,6 +87,19 @@ module.exports = class extends Generator {
 
         // Public projects require an MIT license, private projects should NOT have one
         this.composeWith(require.resolve('../license'), this.props);
+
+        // Ensure git is initialised with gitignore
+        this.props.extras = [
+            'build',
+            '',
+            '## config',
+            '.env.local',
+            '.env.development.local',
+            '.env.test.local',
+            '.env.production.local'
+        ];
+
+        this.composeWith(require.resolve('../gitroot'), this.props);
     }
 
     _writePackageJSON() {

@@ -8,6 +8,11 @@ const knownOptions = {
         type: String,
         required: false,
         desc: 'Project name'
+    },
+    extras: {
+        type: Array,
+        required: false,
+        desc: 'Array of additional gitignore lines'
     }
 };
 
@@ -49,7 +54,10 @@ module.exports = class extends Generator {
             // This file is stored with a different name to prevent git & npm getting involved
             this.templatePath('gitignore.tpl'),
             this.destinationPath('.gitignore'),
-            {name: _.startCase(this.props.projectName)}
+            {
+                name: _.startCase(this.props.projectName),
+                extras: this.props.extras[0] // Array types grab all remaining opts and we end up nested here
+            }
         );
     }
 

@@ -69,3 +69,6 @@ typings/
 .DS_Store
 
 # <%= name %> Custom
+<% if (extras && extras.length && extras.length > 0) { -%>
+<%= extras.join('\n'); %>
+<% } -%>
