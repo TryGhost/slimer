@@ -14,7 +14,7 @@
         "config:base",
         ":disableRateLimiting",
         ":maintainLockFilesMonthly",
-        "schedule:earlyMondays"
+        "schedule:weekdays"
       ]
     },
     "pkgCSS": {
