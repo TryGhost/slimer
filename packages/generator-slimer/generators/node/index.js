@@ -101,8 +101,8 @@ module.exports = class extends Generator {
     }
 
     install() {
-        // Lodash, the one dependency we use everywhere & don't usually install without a caret
-        this.yarnInstall(['lodash', 'bluebird', 'ghost-ignition']);
+        // Uncomment for any default dependencies
+        // this.yarnInstall([...]);
     }
 
     _ship() {
