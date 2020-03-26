@@ -15,7 +15,10 @@
         ":disableRateLimiting",
         ":maintainLockFilesMonthly",
         "schedule:weekdays"
-      ]
+      ],
+      "node": {
+        "supportPolicy": ["lts"]
+      }
     },
     "pkgCSS": {
       "description": "All CSS preprocessors",
@@ -76,6 +79,14 @@
           "groupName": "Build Tool"
         }
       ]
+    },
+    "automergePatchBranch": {
+      "description": "Automerge all patch updates from branch",
+      "separateMinorPatch": true,
+      "patch": {
+        "automerge": true,
+        "automergeType": "branch"
+      }
     },
     "automergePatchSilent": {
       "description": "Silently merge patches, PR merge minors",
