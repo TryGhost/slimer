@@ -132,7 +132,6 @@
       "description": "A config for Ghost themes",
       "extends": [
         "@tryghost:base",
-        "schedule:monthly",
         "@tryghost:groupCSS",
         "@tryghost:automergePatchSilent"
       ],
