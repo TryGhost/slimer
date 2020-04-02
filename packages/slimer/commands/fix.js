@@ -18,11 +18,11 @@ exports.ignore = ['<subcommand>', '[args]'],
 exports.setup = (sywac) => {
     sywac.commandDirectory('fix');
 
-    sywac.example('$0 travis', {
-        desc: 'Rewrite the local travis file'
+    sywac.example('$0 githubactions', {
+        desc: 'Rewrite the local GitHub Actions file'
     });
 
-    sywac.example('$0 travis lts', {
-        desc: 'Rewrite the local travis file with the "lts" support policy'
+    sywac.example('$0 githubactions lts', {
+        desc: 'Rewrite the local GitHub Actions file with the "lts" support policy'
     });
 };

@@ -55,19 +55,15 @@ module.exports = class extends Generator {
     configuring() {
         const nodeVersions = policies[this.props.supportPolicy || defaultPolicy];
 
-        // Add .travis.yaml file, unless if this project is a mono repo package or is not public
+        // Add test.yaml file, unless if this project is a mono repo package
         if (this.props.type === 'pkg') {
-            this.log('Skipping .travis.yml creation for subpackage');
+            this.log('Skipping test.yml creation for subpackage');
             return;
         }
 
-        if (!this.props.public) {
-            this.log('Skipping .travis.yml creation for private repo');
-        }
-
         this.fs.copyTpl(
-            this.templatePath('.travis.yml'),
-            this.destinationPath('.travis.yml'),
+            this.templatePath('test.yml'),
+            this.destinationPath('.github/workflows/test.yml'),
             {
                 nodeVersions,
                 type: this.props.type

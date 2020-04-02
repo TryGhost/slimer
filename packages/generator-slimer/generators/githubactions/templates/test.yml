@@ -1,0 +1,25 @@
+name: Test
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [ <%= nodeVersions.join(", ") -%> ]
+    env:
+      FORCE_COLOR: 1
+    name: Node ${{ matrix.node }}
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node }}
+<% if (type === 'mono')  { -%>
+      - run: yarn global add lerna
+<% } %>
+      - run: yarn
+      - run: yarn test
