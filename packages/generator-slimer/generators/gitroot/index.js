@@ -18,6 +18,20 @@ const knownOptions = {
 
 const knownArguments = {};
 
+const getExtras = () => {
+    // Array types grab all remaining opts and we end up nested here
+    // But on Daniel's machine something different happens...
+    if (!this.props.extras) {
+        return [];
+    }
+
+    if (Array.isArray(this.props.extras) && this.props.extras.length > 1 && Array.isArray(this.props.extras[0])) {
+        return this.props.extras[0];
+    }
+
+    return this.props.extras;
+};
+
 // TASKS:
 // 1. Initialise current folder
 // git init
@@ -56,7 +70,7 @@ module.exports = class extends Generator {
             this.destinationPath('.gitignore'),
             {
                 name: _.startCase(this.props.projectName),
-                extras: this.props.extras[0] // Array types grab all remaining opts and we end up nested here
+                extras: getExtras()
             }
         );
     }
