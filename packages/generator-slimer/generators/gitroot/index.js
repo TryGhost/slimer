@@ -19,6 +19,9 @@ const knownOptions = {
 const knownArguments = {};
 
 const getExtras = () => {
+    if (!this.props) {
+        this.props = {};
+    }
     // Array types grab all remaining opts and we end up nested here
     // But on Daniel's machine something different happens...
     if (!this.props.extras) {
