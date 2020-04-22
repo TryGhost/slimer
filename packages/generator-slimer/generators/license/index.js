@@ -7,6 +7,11 @@ const knownOptions = {
     public: {
         type: Boolean,
         desc: 'Is the project public?'
+    },
+    type: {
+        type: String,
+        required: true,
+        desc: 'What kind of project to create: [module, app, pkg, mono]'
     }
 };
 const knownArguments = {};
@@ -53,7 +58,7 @@ module.exports = class extends Generator {
 
         // Handle public/private
         if (destination && this.props.public) {
-            if (destination.private) {
+            if (this.props.type !== 'mono' && destination.private) { // we keep private:true for the top level of a mono repo
                 delete destination.private;
             }
             if (!destination.license) {
