@@ -14,9 +14,9 @@
         "config:base",
         ":disableRateLimiting",
         ":maintainLockFilesMonthly",
-        "schedule:weekdays",
-        "rebaseWhen:behind-base-branch"
+        "schedule:weekdays"
       ],
+      "rebaseWhen": "behind-base-branch",
       "node": {
         "supportPolicy": [
           "lts"
