@@ -1,17 +1,7 @@
 'use strict';
 const Generator = require('../../lib/Generator');
 const _ = require('lodash');
-
-// @TODO: share this somewhere?
-const policies = {
-    lts: [10, 12],
-    active: [10, 12, 13],
-    current: [13],
-    lts_active: [10, 12],
-    lts_latest: [12]
-};
-
-const defaultPolicy = 'lts';
+const {policies, defaultPolicy} = require('../../lib/node-policies');
 
 // These are the options that can be passed in as flags e.g. --foo=bar
 const knownOptions = {
