@@ -1,6 +1,6 @@
 {
   "name": "@tryghost/renovate-config",
-  "version": "0.1.12",
+  "version": "0.1.13",
   "repository": "https://github.com/TryGhost/slimer/tree/master/packages/renovate-config",
   "author": "Ghost Foundation",
   "license": "MIT",
@@ -102,7 +102,9 @@
       "description": "Automerge dev dependencies",
       "packageRules": [
         {
-          "depTypeList": ["devDependencies"],
+          "depTypeList": [
+            "devDependencies"
+          ],
           "automerge": true,
           "automergeType": "branch"
         }
