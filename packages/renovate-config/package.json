@@ -91,10 +91,7 @@
           "extends": "@tryghost:pkgTestLint",
           "groupName": "Test & linting packages",
           "automerge": true,
-          "automergeType": "branch",
-          "major": {
-            "automerge": false
-          }
+          "automergeType": "branch"
         }
       ]
     },
