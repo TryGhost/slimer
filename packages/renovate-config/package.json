@@ -17,6 +17,8 @@
         "schedule:weekdays"
       ],
       "rebaseWhen": "behind-base-branch",
+      "separateMultipleMajor": false,
+      "separateMinorPatch": true,
       "node": {
         "supportPolicy": [
           "lts"
@@ -83,9 +85,8 @@
         }
       ]
     },
-    "automergeSilentTestLintNonMajor": {
+    "automergeTestLint": {
       "description": "Silently automerge all non-major testing & linting updates",
-      "separateMinorPatch": false,
       "packageRules": [
         {
           "extends": "@tryghost:pkgTestLint",
@@ -107,20 +108,22 @@
         }
       ]
     },
-    "quietJS": {
-      "description": "A quiet config",
-      "extends": [
-        "@tryghost:base",
-        "@tryghost:automergeSilentTestLintNonMajor",
-        "@tryghost:groupBuildTools"
-      ],
-      "separateMultipleMajor": false,
-      "separateMinorPatch": true,
+    "automergeNonMajor": {
+      "description": "Automerge dev dependencies",
       "automerge": true,
       "automergeType": "branch",
       "major": {
         "automerge": false
       }
+    },
+    "quietJS": {
+      "description": "A quiet config",
+      "extends": [
+        "@tryghost:base",
+        "@tryghost:automergeNonMajor",
+        "@tryghost:automergeTestLint",
+        "@tryghost:groupBuildTools"
+      ]
     },
     "theme": {
       "description": "A config for Ghost themes",
