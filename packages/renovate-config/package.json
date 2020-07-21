@@ -83,27 +83,6 @@
         }
       ]
     },
-    "automergePatchBranch": {
-      "description": "Automerge all patch updates from branch",
-      "separateMinorPatch": true,
-      "patch": {
-        "automerge": true,
-        "automergeType": "branch"
-      }
-    },
-    "automergePatchSilent": {
-      "description": "Silently merge patches, PR merge minors",
-      "separateMinorPatch": true,
-      "automerge": false,
-      "minor": {
-        "automerge": true,
-        "automergeType": "pr"
-      },
-      "patch": {
-        "automerge": true,
-        "automergeType": "branch"
-      }
-    },
     "automergeSilentTestLintNonMajor": {
       "description": "Silently automerge all non-major testing & linting updates",
       "separateMinorPatch": false,
@@ -123,11 +102,16 @@
       "description": "A quiet config",
       "extends": [
         "@tryghost:base",
-        "@tryghost:automergePatchSilent",
         "@tryghost:automergeSilentTestLintNonMajor",
         "@tryghost:groupBuildTools"
       ],
-      "separateMultipleMajor": false
+      "separateMultipleMajor": false,
+      "separateMinorPatch": true,
+      "automerge": true,
+      "automergeType": "branch",
+      "major": {
+        "automerge": false
+      }
     },
     "theme": {
       "description": "A config for Ghost themes",
