@@ -98,6 +98,16 @@
         }
       ]
     },
+    "automergeDevDependencies": {
+      "description": "Automerge dev dependencies",
+      "packageRules": [
+        {
+          "depTypeList": ["devDependencies"],
+          "automerge": true,
+          "automergeType": "branch"
+        }
+      ]
+    },
     "quietJS": {
       "description": "A quiet config",
       "extends": [
