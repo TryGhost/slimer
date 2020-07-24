@@ -23,7 +23,11 @@
         "supportPolicy": [
           "lts"
         ]
-      }
+      },
+      "ignoreDeps": [
+        "moment",
+        "moment-timezone"
+      ]
     },
     "pkgCSS": {
       "description": "All CSS preprocessors",
