@@ -1,6 +1,6 @@
 {
   "name": "@tryghost/renovate-config",
-  "version": "0.1.15",
+  "version": "0.1.16",
   "repository": "https://github.com/TryGhost/slimer/tree/master/packages/renovate-config",
   "author": "Ghost Foundation",
   "license": "MIT",
