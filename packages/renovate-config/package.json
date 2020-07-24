@@ -94,11 +94,11 @@
       "packageRules": [
         {
           "extends": "@tryghost:pkgTestLint",
-          "groupName": "Test & linting packages"
+          "groupName": "Test & linting packages",
+          "automerge": true,
+          "automergeType": "branch"
         }
-      ],
-      "automerge": true,
-      "automergeType": "branch"
+      ]
     },
     "automergeDevDependencies": {
       "description": "Automerge dev dependencies",
@@ -113,7 +113,7 @@
       ]
     },
     "automergeNonMajor": {
-      "description": "Automerge dev dependencies",
+      "description": "Automerge non-major dependencies",
       "automerge": true,
       "automergeType": "branch",
       "major": {
@@ -125,8 +125,7 @@
       "extends": [
         "@tryghost:base",
         "@tryghost:automergeNonMajor",
-        "@tryghost:automergeTestLint",
-        "@tryghost:groupBuildTools"
+        "@tryghost:automergeTestLint"
       ]
     },
     "theme": {
