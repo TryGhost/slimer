@@ -114,11 +114,18 @@
     },
     "automergeNonMajor": {
       "description": "Automerge non-major dependencies",
-      "automerge": true,
-      "automergeType": "branch",
-      "major": {
-        "automerge": false
-      }
+      "packageRules": [
+        {
+          "depTypeList": [
+            "dependencies"
+          ],
+          "automerge": true,
+          "automergeType": "branch",
+          "major": {
+            "automerge": false
+          }
+        }
+      ]
     },
     "quietJS": {
       "description": "A quiet config",
