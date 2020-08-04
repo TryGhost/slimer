@@ -117,7 +117,8 @@
       "packageRules": [
         {
           "depTypeList": [
-            "dependencies"
+            "dependencies",
+            "optionalDependencies"
           ],
           "automerge": true,
           "automergeType": "branch",
