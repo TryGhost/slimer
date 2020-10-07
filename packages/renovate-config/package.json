@@ -113,9 +113,10 @@
       ]
     },
     "automergeNonMajor": {
-      "description": "Automerge non-major dependencies",
+      "description": "Automerge non-major dependencies for >=1.0.0",
       "packageRules": [
         {
+          "matchCurrentVersion": ">= 1.0.0",
           "depTypeList": [
             "dependencies",
             "optionalDependencies"
