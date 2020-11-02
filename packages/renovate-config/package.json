@@ -36,7 +36,8 @@
         "^css"
       ],
       "packageNames": [
-        "autoprefixer"
+        "autoprefixer",
+        "ember-cli-postcss"
       ]
     },
     "pkgTestLint": {
