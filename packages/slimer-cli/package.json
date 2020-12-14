@@ -27,7 +27,7 @@
     "sinon": "7.5.0"
   },
   "dependencies": {
-    "@tryghost/pretty-cli": "1.2.11",
+    "@tryghost/pretty-cli": "1.2.12",
     "@tryghost/slimer": "^1.1.6"
   }
 }
