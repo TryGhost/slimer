@@ -25,4 +25,8 @@ exports.setup = (sywac) => {
     sywac.example('$0 githubactions lts', {
         desc: 'Rewrite the local GitHub Actions file with the "lts" support policy'
     });
+
+    sywac.example('$0 license --public=false', {
+        desc: 'Update licensing information to be private'
+    });
 };
