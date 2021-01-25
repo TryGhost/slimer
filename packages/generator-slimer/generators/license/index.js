@@ -82,7 +82,7 @@ module.exports = class extends Generator {
     _writeREADME() {
         // Setup copyright info
         const title = `# Copyright & License \n\n`;
-        const notice = `${title}Copyright (c) ${new Date().getFullYear()} Ghost Foundation`;
+        const notice = `${title}Copyright (c) 2013-${new Date().getFullYear()} Ghost Foundation`;
         const publicCopyright = `${notice} - Released under the [MIT license](LICENSE).`;
         const privateCopyright = `${notice}. All rights reserved.\n\nThis code is considered closed-source and not for distribution. There is no opensource license associated with this project.`;
         const copyright = this.props.public ? publicCopyright : privateCopyright;
