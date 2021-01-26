@@ -58,7 +58,6 @@ fsUtils.isMonoRepo = () => {
 };
 
 // Used to load config when creating a new package
-// @TODO: why don't we need to resolve the root dir here?
 fsUtils.loadMonoConfig = () => {
     let rootDir = fsUtils.getRootDir(process.cwd());
 
@@ -76,7 +75,7 @@ fsUtils.loadMonoConfig = () => {
     return monoConfig;
 };
 
-fsUtils.loadPkgConfig = () => {
+fsUtils.loadBasePkgConfig = () => {
     let rootDir = fsUtils.resolveRootDir(process.cwd());
 
     if (!fsUtils.pathExists(rootDir, PKG_FILENAME)) {
@@ -86,8 +85,22 @@ fsUtils.loadPkgConfig = () => {
     return require(path.join(rootDir, PKG_FILENAME));
 };
 
+fsUtils.loadLocalPkgConfig = () => {
+    let rootDir = fsUtils.getRootDir(process.cwd());
+
+    if (!fsUtils.isMonoPackage()) {
+        rootDir = fsUtils.resolveRootDir(process.cwd());
+    }
+
+    if (!fsUtils.pathExists(rootDir, PKG_FILENAME)) {
+        return {};
+    }
+
+    return require(path.join(rootDir, PKG_FILENAME));
+};
+
 fsUtils.getRepo = () => {
-    let pkgJSON = fsUtils.loadPkgConfig();
+    let pkgJSON = fsUtils.loadBasePkgConfig();
     let url = pkgJSON.repository.url || pkgJSON.repository;
     let repo = url.match(/github\.com[/:](.*)?$/)[1];
     let org = repo.match(/^(.*)?\//)[1];
@@ -97,7 +110,7 @@ fsUtils.getRepo = () => {
 };
 
 fsUtils.getName = () => {
-    let pkgJSON = fsUtils.loadPkgConfig();
+    let pkgJSON = fsUtils.loadLocalPkgConfig();
 
     return pkgJSON.name;
 };
@@ -115,7 +128,7 @@ fsUtils.getType = () => {
         return 'mono';
     }
 
-    let pkgJSON = fsUtils.loadPkgConfig();
+    let pkgJSON = fsUtils.loadBasePkgConfig();
     return pkgJSON.main === 'app.js' ? 'app' : 'module';
 };
 
