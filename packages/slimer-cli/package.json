@@ -28,6 +28,6 @@
   },
   "dependencies": {
     "@tryghost/pretty-cli": "1.2.15",
-    "@tryghost/slimer": "^1.2.2"
+    "@tryghost/slimer": "1.2.2"
   }
 }
