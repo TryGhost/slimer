@@ -1,6 +1,6 @@
 {
   "name": "@tryghost/renovate-config",
-  "version": "0.1.22",
+  "version": "0.1.23",
   "repository": "https://github.com/TryGhost/slimer/tree/master/packages/renovate-config",
   "author": "Ghost Foundation",
   "license": "MIT",
@@ -118,7 +118,9 @@
       "packageRules": [
         {
           "matchCurrentVersion": ">= 1.0.0",
-          "excludePackagePatterns": ["^@tryghost\/.+"],
+          "excludePackagePatterns": [
+            "^@tryghost/.+"
+          ],
           "depTypeList": [
             "dependencies",
             "optionalDependencies"
