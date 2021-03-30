@@ -105,6 +105,21 @@
         }
       ]
     },
+    "groupOtherDependencies": {
+      "description": "Group together all other dependencies",
+      "packageRules": [
+        {
+          "matchDepTypes": [
+            "action"
+          ],
+          "matchUpdateTypes": [
+            "patch",
+            "minor"
+          ],
+          "groupName": "Other dependencies (non-major)"
+        }
+      ]
+    },
     "automergeTestLint": {
       "description": "Silently automerge all non-major testing & linting updates",
       "packageRules": [
@@ -160,7 +175,8 @@
       "description": "A config for internal repositories",
       "extends": [
         "@tryghost:base",
-        "@tryghost:groupDevDependencies"
+        "@tryghost:groupDevDependencies",
+        "@tryghost:groupOtherDependencies"
       ]
     },
     "theme": {
