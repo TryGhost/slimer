@@ -1,6 +1,6 @@
 {
   "name": "@tryghost/renovate-config",
-  "version": "0.1.23",
+  "version": "0.1.24",
   "repository": "https://github.com/TryGhost/slimer/tree/master/packages/renovate-config",
   "author": "Ghost Foundation",
   "license": "MIT",
@@ -94,8 +94,13 @@
       "description": "Group non-major devDependencies",
       "packageRules": [
         {
-          "matchDepTypes": ["devDependencies"],
-          "matchUpdateTypes": ["patch", "minor"],
+          "matchDepTypes": [
+            "devDependencies"
+          ],
+          "matchUpdateTypes": [
+            "patch",
+            "minor"
+          ],
           "groupName": "devDependencies (non-major)"
         }
       ]
