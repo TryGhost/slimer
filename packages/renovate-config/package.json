@@ -156,6 +156,13 @@
         "@tryghost:automergeTestLint"
       ]
     },
+    "privateRepo": {
+      "description": "A config for internal repositories",
+      "extends": [
+        "@tryghost:base",
+        "@tryghost:groupDevDependencies"
+      ]
+    },
     "theme": {
       "description": "A config for Ghost themes",
       "extends": [
