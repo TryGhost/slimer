@@ -90,6 +90,16 @@
         }
       ]
     },
+    "groupDevDependencies": {
+      "description": "Group non-major devDependencies",
+      "packageRules": [
+        {
+          "matchDepTypes": ["devDependencies"],
+          "matchUpdateTypes": ["patch", "minor"],
+          "groupName": "devDependencies (non-major)"
+        }
+      ]
+    },
     "automergeTestLint": {
       "description": "Silently automerge all non-major testing & linting updates",
       "packageRules": [
