@@ -167,7 +167,7 @@
             "^@tryghost/.+"
           ],
           "extends": "@tryghost:automergeNonMajor",
-          "enabled": false
+          "automerge": false
         }
       ]
     },
