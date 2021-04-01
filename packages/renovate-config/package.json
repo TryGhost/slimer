@@ -166,7 +166,6 @@
           "matchPackagePatterns": [
             "^@tryghost/.+"
           ],
-          "extends": "@tryghost:automergeNonMajor",
           "automerge": false
         }
       ]
