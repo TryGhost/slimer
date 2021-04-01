@@ -160,6 +160,17 @@
         }
       ]
     },
+    "disableTryGhostAutomerge": {
+      "packageRules": [
+        {
+          "matchPackagePatterns": [
+            "^@tryghost/.+"
+          ],
+          "extends": "@tryghost:automergeNonMajor",
+          "enabled": false
+        }
+      ]
+    },
     "quietJS": {
       "description": "A quiet config",
       "extends": [
