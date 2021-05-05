@@ -1,14 +1,14 @@
 const policies = {
-    lts: [10, 12],
-    active: [10, 12, 13],
-    current: [13],
-    lts_active: [10, 12],
-    lts_latest: [12]
+    lts: [12, 14],
+    active: [14, 15, 16],
+    current: [15, 16],
+    lts_active: [14],
+    lts_latest: [14]
 };
 
 const defaultPolicy = 'lts';
 
-const nodeEngines = '^10.21.0 || ^12.18.0';
+const nodeEngines = '^12.10.0 || ^14.15.0';
 
 module.exports = {
     defaultPolicy,
