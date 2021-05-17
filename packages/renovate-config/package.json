@@ -193,7 +193,13 @@
         "@tryghost:groupCSS"
       ],
       "automerge": true,
-      "automergeType": "branch"
+      "automergeType": "branch",
+      "packageRules": [
+        {
+          "matchPackageNames": ["beeper"],
+          "allowedVersions": "<3.0.0"
+        }
+      ]
     }
   }
 }
