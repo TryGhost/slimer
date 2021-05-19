@@ -1,6 +1,6 @@
 {
   "name": "@tryghost/renovate-config",
-  "version": "0.1.30",
+  "version": "0.1.31",
   "repository": "https://github.com/TryGhost/slimer/tree/master/packages/renovate-config",
   "author": "Ghost Foundation",
   "license": "MIT",
@@ -196,7 +196,9 @@
       "automergeType": "branch",
       "packageRules": [
         {
-          "matchPackageNames": ["beeper"],
+          "matchPackageNames": [
+            "beeper"
+          ],
           "allowedVersions": "<3.0.0"
         }
       ]
