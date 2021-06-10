@@ -65,10 +65,25 @@ module.exports = class extends Generator {
         });
     }
 
-    _writeMainFile() {
+    _createAppStructure() {
         this.fs.copyTpl(
             this.templatePath('blank.js'),
             this.destinationPath(this.props.main)
+        );
+    }
+
+    _createModuleStructure() {
+        // Create a lib dir with a blank correctly named file
+        this.fs.copyTpl(
+            this.templatePath('blank.js'),
+            this.destinationPath(`./lib/${this.props.repoName}.js`)
+        );
+
+        // Create an index.js pointing at the lib file
+        this.fs.copyTpl(
+            this.templatePath('index.js'),
+            this.destinationPath(this.props.main),
+            {libFilePath: `./lib/${this.props.repoName}`}
         );
     }
 
@@ -93,8 +108,11 @@ module.exports = class extends Generator {
     }
 
     default() {
-        // Create a "main" JS file
-        this._writeMainFile();
+        if (this.props.type === 'app') {
+            this._createAppStructure();
+        } else {
+            this._createModuleStructure();
+        }
 
         // Create a package.json file
         this._writePackageJson();
