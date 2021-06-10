@@ -2,7 +2,7 @@
   "name": "@tryghost/slimer",
   "version": "1.2.4",
   "description": "tbc",
-  "repository": "https://github.com/TryGhost/slimer/tree/master/packages/slimer",
+  "repository": "https://github.com/TryGhost/slimer/tree/main/packages/slimer",
   "author": "Ghost Foundation",
   "license": "MIT",
   "main": "index.js",

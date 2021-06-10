@@ -2,7 +2,7 @@
   "name": "@tryghost/slimer-cli",
   "version": "1.2.4",
   "description": "tbc",
-  "repository": "https://github.com/TryGhost/slimer/tree/master/packages/slimer-cli",
+  "repository": "https://github.com/TryGhost/slimer/tree/main/packages/slimer-cli",
   "author": "Ghost Foundation",
   "license": "MIT",
   "bin": {
