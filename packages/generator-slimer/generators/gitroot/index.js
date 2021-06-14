@@ -53,7 +53,7 @@ module.exports = class extends Generator {
 
     // use https://github.com/iamstarkov/generator-git-init if it gets updated??
     _gitInit() {
-        this.spawnCommandSync('git', ['init', '--quiet']);
+        this.spawnCommandSync('git', ['init', '--quiet', '-b', 'main']);
     }
 
     _initialCommit() {
