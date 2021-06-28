@@ -13,9 +13,15 @@
       "extends": [
         "config:base",
         ":disableRateLimiting",
-        ":maintainLockFilesMonthly",
         "schedule:weekdays"
       ],
+      "lockFileMaintenance": {
+        "enabled": true,
+        "extends": [
+          "schedule:weekly"
+        ],
+        "automerge": true
+      },
       "rebaseWhen": "behind-base-branch",
       "separateMultipleMajor": false,
       "separateMinorPatch": false,
