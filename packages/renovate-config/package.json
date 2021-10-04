@@ -20,7 +20,8 @@
         "extends": [
           "schedule:weekly"
         ],
-        "automerge": true
+        "automerge": true,
+        "automergeType": "branch"
       },
       "rebaseWhen": "behind-base-branch",
       "separateMultipleMajor": false,
