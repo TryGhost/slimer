@@ -8,7 +8,7 @@ const policies = {
 
 const defaultPolicy = 'lts';
 
-const nodeEngines = '^12.10.0 || ^14.17.0 || ^16.13.0';
+const nodeEngines = '^12.22.1 || ^14.17.0 || ^16.13.0';
 
 module.exports = {
     defaultPolicy,
