@@ -23,7 +23,6 @@
         "automerge": true,
         "automergeType": "branch"
       },
-      "rebaseWhen": "behind-base-branch",
       "separateMultipleMajor": false,
       "separateMinorPatch": false,
       "node": {
