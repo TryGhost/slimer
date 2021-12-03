@@ -13,7 +13,6 @@
       "extends": [
         "config:base",
         ":disableRateLimiting",
-        ":disableDependencyDashboard",
         "schedule:weekdays"
       ],
       "lockFileMaintenance": {
