@@ -11,6 +11,10 @@ const knownOptions = {
         required: true,
         desc: 'What kind of project to create: [module, app, pkg, mono]'
     },
+    desc: {
+        type: String,
+        desc: 'One line description for the README.md file.'
+    },
     public: {
         type: Boolean,
         desc: 'Is the project public?'
@@ -98,6 +102,7 @@ module.exports = class extends Generator {
             this.destinationPath('package.json'),
             {
                 npmName: this.props.npmName,
+                desc: this.props.desc,
                 license: this.props.public ? '"license": "MIT",' : '"private": true,',
                 isPublicScoped: this.props.public && _.startsWith(this.props.npmName, '@'),
                 isPublic: this.props.public,

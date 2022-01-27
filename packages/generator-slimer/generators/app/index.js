@@ -12,6 +12,10 @@ const knownOptions = {
         required: true,
         desc: 'What kind of project to create: [module, app, pkg, mono]'
     },
+    desc: {
+        type: String,
+        desc: 'One line description for the README.md file.'
+    },
     public: {
         type: Boolean,
         default: true,
@@ -115,6 +119,12 @@ module.exports = class extends Generator {
                 message: `Is your project public?`,
                 when: _.isNil(this.props.public),
                 default: true
+            },
+            {
+                type: 'string',
+                name: 'desc',
+                message: `Enter a one-line description for your ${this.props.type === 'pkg' ? 'package' : this.props.type === 'mono' ? 'monorepo' : this.props.type}:`,
+                when: _.isNil(this.props.desc)
             }
         ];
 

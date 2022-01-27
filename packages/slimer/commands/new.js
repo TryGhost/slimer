@@ -9,6 +9,11 @@ const optOverrides = {
         choices: ['module', 'app', 'pkg', 'mono'],
         required: false
     },
+    desc: {
+        // sywac doesn't respect empty string as a valid default
+        // @TODO push a fix to the main repo
+        hints: '[required] [string] [default: ""]'
+    },
     scope: {
         // sywac doesn't respect empty string as a valid default
         // @TODO push a fix to the main repo

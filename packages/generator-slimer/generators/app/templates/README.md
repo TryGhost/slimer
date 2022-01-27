@@ -1,4 +1,7 @@
 # <%= projectName %>
+<% if (desc) { %>
+<%= desc %>
+<% } -%>
 
 ## Install
 <% if (type === 'module' || type === 'pkg')  { -%>
