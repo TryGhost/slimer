@@ -53,11 +53,11 @@
         "packages:jsTest"
       ],
       "packageNames": [
-        eslint-plugin-ghost,
-        nock,
+        "eslint-plugin-ghost",
+        "nock",
         "nodemon",
         "rewire",
-        tmp
+        "tmp"
       ]
     },
     "pkgBuildTools": {
