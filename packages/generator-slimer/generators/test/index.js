@@ -1,8 +1,8 @@
 'use strict';
 const Generator = require('../../lib/Generator');
 
-// "test": "NODE_ENV=testing c8 --all --check-coverage mocha './test/**/*.test.js'",
-const testScript = 'NODE_ENV=testing c8 --all --check-coverage mocha \'./test/**/*.test.js\'';
+// "test": "NODE_ENV=testing c8 --all --check-coverage --reporter text --reporter cobertura mocha './test/**/*.test.js'",
+const testScript = 'NODE_ENV=testing c8 --all --check-coverage --reporter text --reporter cobertura mocha \'./test/**/*.test.js\'';
 
 const knownOptions = {
     type: {
