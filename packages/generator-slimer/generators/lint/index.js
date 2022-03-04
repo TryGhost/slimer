@@ -1,8 +1,12 @@
 'use strict';
 const Generator = require('../../lib/Generator');
 
-// "lint": "eslint . --ext .js --cache",
-const lintScript = 'eslint . --ext .js --cache';
+// "lint:code": "eslint *.js lib/ --ext .js --cache",
+const lintCodeScript = 'eslint *.js lib/ --ext .js --cache';
+
+// "lint:test": "eslint -c test/.eslintrc.js test/ --ext .js --cache",
+const lintTestScript = 'eslint -c test/.eslintrc.js test/ --ext .js --cache';
+
 //  "lint": "lerna run lint",
 const monoLintScript = 'lerna run lint';
 
@@ -51,11 +55,15 @@ module.exports = class extends Generator {
             if (this.props.type === 'mono') {
                 destination.scripts.lint = monoLintScript;
             } else {
-                destination.scripts.lint = lintScript;
+                destination.scripts['lint:code'] = lintCodeScript;
+                destination.scripts.lint = 'yarn lint:code';
             }
 
             // Add posttest, but not for mono repos, or repos without tests
             if (this.props.type !== 'mono' && !this.props.skipTest && destination.scripts.test) {
+                destination.scripts['lint:test'] = lintTestScript;
+                destination.scripts.lint += ' && yarn lint:test';
+
                 // "posttest": "yarn lint",
                 destination.scripts.posttest = 'yarn lint';
             }
