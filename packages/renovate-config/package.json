@@ -30,6 +30,9 @@
           "lts"
         ]
       },
+      "postUpdateOptions": [
+        "yarnDedupeHighest"
+      ],
       "ignoreDeps": [
         "moment",
         "moment-timezone"
