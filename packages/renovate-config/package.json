@@ -58,6 +58,7 @@
       "packageNames": [
         "c8",
         "eslint-plugin-ghost",
+        "grunt",
         "nock",
         "nodemon",
         "rewire",
