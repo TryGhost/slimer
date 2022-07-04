@@ -1,5 +1,5 @@
 const policies = {
-    lts: [114, 16],
+    lts: [14, 16],
     active: [14, 15, 16],
     current: [17],
     lts_active: [16],
