@@ -62,6 +62,7 @@
         "nock",
         "nodemon",
         "rewire",
+        "supertest",
         "tmp"
       ]
     },
