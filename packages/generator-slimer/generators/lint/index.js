@@ -59,13 +59,10 @@ module.exports = class extends Generator {
                 destination.scripts.lint = 'yarn lint:code';
             }
 
-            // Add posttest, but not for mono repos, or repos without tests
-            if (this.props.type !== 'mono' && !this.props.skipTest && destination.scripts.test) {
+            // Add posttest, but not for packages/mono repos, or repos without tests
+            if (['mono', 'pkg'].includes(this.props.type) && !this.props.skipTest && destination.scripts.test) {
                 destination.scripts['lint:test'] = lintTestScript;
                 destination.scripts.lint += ' && yarn lint:test';
-
-                // "posttest": "yarn lint",
-                destination.scripts.posttest = 'yarn lint';
             }
             this.fs.writeJSON(this.destinationPath('package.json'), destination);
         }

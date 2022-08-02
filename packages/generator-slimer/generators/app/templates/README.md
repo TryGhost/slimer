@@ -3,8 +3,8 @@
 <%= desc %>
 <% } -%>
 
+<% if (public && (type === 'module' || type === 'pkg'))  { -%>
 ## Install
-<% if (type === 'module' || type === 'pkg')  { -%>
 
 `npm install <%= npmName %> --save`
 
@@ -13,14 +13,13 @@ or
 `yarn add <%= npmName %>`
 <% } -%>
 
-
 ## Usage
 
 
 ## Develop
 
 <% if (type === 'pkg') { -%>
-This is a mono repository, managed with [lerna](https://lernajs.io/).
+This is a monorepo package.
 
 Follow the instructions for the top-level repo.
 <% } if (type === 'mono') { -%>
@@ -39,19 +38,17 @@ To add a new package to the repo:
 2. Run `yarn` to install top-level dependencies.
 <% } %>
 
+<% if (type === 'app') { -%>
 ## Run
 
 - `yarn dev`
-<% if (type === 'app') { -%>
 - View: [http://localhost:9999](http://localhost:9999)
 <% } -%>
-
 
 ## Test
 
 - `yarn lint` run just eslint
 - `yarn test` run lint and tests
-
 
 <% if (type !== 'pkg') { -%>
 ## Publish

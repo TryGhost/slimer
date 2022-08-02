@@ -37,9 +37,18 @@ fsUtils.pathExists = (...args) => {
 fsUtils.isMonoPackage = () => {
     let rootDir = fsUtils.resolveRootDir(process.cwd());
 
+    if (process.cwd() === rootDir) {
+        return false;
+    }
+
     // It's only a mono package, if the lerna.json exists at the root
     // And the current dir is not the root
-    if (fsUtils.pathExists(rootDir, LERNA_FILENAME) && process.cwd() !== rootDir) {
+    if (fsUtils.pathExists(rootDir, LERNA_FILENAME)) {
+        return true;
+    }
+
+    const packageJson = fsUtils.loadBasePkgConfig();
+    if (packageJson.workspaces && Array.isArray(packageJson.workspaces)) {
         return true;
     }
 
@@ -54,6 +63,11 @@ fsUtils.isMonoRepo = () => {
         return false;
     }
 
+    const packageJson = fsUtils.loadBasePkgConfig();
+    if (!packageJson.workspaces || !Array.isArray(packageJson.workspaces)) {
+        return false;
+    }
+
     return true;
 };
 
@@ -61,15 +75,23 @@ fsUtils.isMonoRepo = () => {
 fsUtils.loadMonoConfig = () => {
     let rootDir = fsUtils.getRootDir(process.cwd());
 
-    if (!fsUtils.pathExists(rootDir, LERNA_FILENAME)) {
-        return {};
+    let monoConfig = {};
+
+    if (fsUtils.pathExists(rootDir, LERNA_FILENAME)) {
+        let lernaJSON = require(path.join(rootDir, LERNA_FILENAME));
+        monoConfig = lernaJSON.local || {};
+        monoConfig.type = 'pkg';
+        monoConfig.path = path.join(rootDir, 'packages');
+        monoConfig.workspaceManager = 'lerna';
     }
 
-    let lernaJSON = require(path.join(rootDir, LERNA_FILENAME));
-    let monoConfig = lernaJSON.local || {};
-
-    monoConfig.type = 'pkg';
-    monoConfig.path = path.join(rootDir, 'packages');
+    const packageJson = fsUtils.loadBasePkgConfig();
+    if (packageJson.workspaces && Array.isArray(packageJson.workspaces)) {
+        monoConfig = packageJson.monorepo || {};
+        monoConfig.type = 'pkg';
+        monoConfig.path = path.join(rootDir, packageJson.workspaces[0].replace('/*', ''));
+        monoConfig.workspaceManager = 'yarn';
+    }
 
     debug('Loaded monoConfig', monoConfig);
     return monoConfig;

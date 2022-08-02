@@ -40,6 +40,11 @@ const knownOptions = {
         type: String,
         desc: 'The URL of the GitHub repository',
         hidden: true
+    },
+    internalPackages: {
+        type: Boolean,
+        desc: 'Whether this monorepo contains internal packages',
+        hidden: true
     }
 };
 

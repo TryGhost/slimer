@@ -12,6 +12,10 @@ const knownOptions = {
         type: String,
         required: true,
         desc: 'What kind of project to create: [module, app, pkg, mono]'
+    },
+    internalPackages: {
+        type: Boolean,
+        desc: 'Does the monorepo contain internal packages?'
     }
 };
 const knownArguments = {};
@@ -86,6 +90,10 @@ module.exports = class extends Generator {
         const publicCopyright = `${notice} - Released under the [MIT license](LICENSE).`;
         const privateCopyright = `${notice}. All rights reserved.\n\nThis code is considered closed-source and not for distribution. There is no opensource license associated with this project.`;
         const copyright = this.props.public ? publicCopyright : privateCopyright;
+
+        if (this.props.internalPackages) {
+            return;
+        }
 
         // Read the existing README.md
         let destination = this.fs.read(this.destinationPath('README.md'));
