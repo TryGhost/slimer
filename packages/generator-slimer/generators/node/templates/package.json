@@ -8,12 +8,10 @@
   "scripts": {
     "dev": "echo \"Implement me!\""
   },
-  <% if (isPublic) { %>
-    "files": [
-      "<%= main %>",
-      "lib"
-    ],
-  <% } %>
+  "files": [
+    "<%= main %>",
+    "lib"
+  ],
   <% if (isPublicScoped) { %>
   "publishConfig": {
     "access": "public"
