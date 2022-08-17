@@ -50,7 +50,8 @@ module.exports = class extends Generator {
                 destination.scripts['test:parent'] = testScript;
                 destination.scripts.test = 'yarn test:parent && lerna run test';
             } else {
-                destination.scripts.test = testScript;
+                destination.scripts['test:unit'] = testScript;
+                destination.scripts.test = 'yarn test:unit';
             }
 
             this.fs.writeJSON(this.destinationPath('package.json'), destination);
