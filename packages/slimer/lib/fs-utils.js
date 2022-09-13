@@ -83,14 +83,14 @@ fsUtils.loadMonoConfig = () => {
         monoConfig.type = 'pkg';
         monoConfig.path = path.join(rootDir, 'packages');
         monoConfig.workspaceManager = 'lerna';
-    }
-
-    const packageJson = fsUtils.loadBasePkgConfig();
-    if (packageJson.workspaces && Array.isArray(packageJson.workspaces)) {
-        monoConfig = packageJson.monorepo || {};
-        monoConfig.type = 'pkg';
-        monoConfig.path = path.join(rootDir, packageJson.workspaces[0].replace('/*', ''));
-        monoConfig.workspaceManager = 'yarn';
+    } else {
+        const packageJson = fsUtils.loadBasePkgConfig();
+        if (packageJson.workspaces && Array.isArray(packageJson.workspaces)) {
+            monoConfig = packageJson.monorepo || {};
+            monoConfig.type = 'pkg';
+            monoConfig.path = path.join(rootDir, packageJson.workspaces[0].replace('/*', ''));
+            monoConfig.workspaceManager = 'yarn';
+        }
     }
 
     debug('Loaded monoConfig', monoConfig);
