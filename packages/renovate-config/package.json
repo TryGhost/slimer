@@ -179,6 +179,7 @@
         {
           "matchPackagePatterns": [
             "^@tryghost/.+",
+            "eslint-plugin-ghost",
             "gscan"
           ],
           "automerge": false
