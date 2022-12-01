@@ -24,18 +24,6 @@ module.exports = class extends Generator {
 
     configuring() {
         this.fs.copy(
-            this.templatePath('test/utils/assertions.js'),
-            this.destinationPath('test/utils/assertions.js')
-        );
-        this.fs.copy(
-            this.templatePath('test/utils/index.js'),
-            this.destinationPath('test/utils/index.js')
-        );
-        this.fs.copy(
-            this.templatePath('test/utils/overrides.js'),
-            this.destinationPath('test/utils/overrides.js')
-        );
-        this.fs.copy(
             this.templatePath('test/hello.test.js'),
             this.destinationPath('test/hello.test.js')
         );
@@ -66,6 +54,6 @@ module.exports = class extends Generator {
         }
 
         // Test dependencies
-        this.yarnInstall(['c8', 'mocha', 'should', 'sinon'], options);
+        this.yarnInstall(['c8', 'mocha', 'sinon'], options);
     }
 };
