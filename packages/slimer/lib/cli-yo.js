@@ -14,20 +14,18 @@ class CliYo {
         this.loaded = false;
     }
 
-    loadEnv(cb) {
-        env.lookup(() => {
-            this.loaded = true;
-            cb();
-        });
+    loadEnv() {
+        env.lookup();
+        this.loaded = true;
     }
 
-    findGenerator(name, cb) {
+    findGenerator(name) {
         // @TODO: validation / error handling
         if (!this.loaded) {
-            return this.loadEnv(() => cb(env.get(name)));
+            this.loadEnv();
         }
 
-        return cb(env.get(name));
+        return env.get(name);
     }
 
     initGeneratorHelp(Generator) {
@@ -53,26 +51,25 @@ class CliYo {
     }
 
     yoToSywac(name, cb) {
-        this.findGenerator(name, (Generator) => {
-            let {args, options} = this.initGeneratorHelp(Generator);
-            const yoDefaults = ['help', 'skip-cache', 'skip-install'];
+        const Generator = this.findGenerator(name);
+        let {args, options} = this.initGeneratorHelp(Generator);
+        const yoDefaults = ['help', 'skip-cache', 'skip-install'];
 
-            const toSywac = (t) => {
-                let tt = _.clone(t);
-                tt.type = t.type.name.toLowerCase();
-                tt.flags = `--${t.name}`;
-                tt.defaultValue = t.default;
-                return tt;
-            };
+        const toSywac = (t) => {
+            let tt = _.clone(t);
+            tt.type = t.type.name.toLowerCase();
+            tt.flags = `--${t.name}`;
+            tt.defaultValue = t.default;
+            return tt;
+        };
 
-            args = _.map(args, toSywac);
+        args = _.map(args, toSywac);
 
-            options = _(options).filter((opt) => {
-                return !_.includes(yoDefaults, opt.name);
-            }).map(toSywac).value();
+        options = _(options).filter((opt) => {
+            return !_.includes(yoDefaults, opt.name);
+        }).map(toSywac).value();
 
-            cb(args, options);
-        });
+        cb(args, options);
     }
 
     callGenerator(name, argv, cb) {
