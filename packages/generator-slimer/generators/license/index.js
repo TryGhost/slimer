@@ -51,9 +51,6 @@ module.exports = class extends Generator {
                 this.destinationPath('LICENSE'),
                 {date: `2013-${new Date().getFullYear()}`}
             );
-        } else {
-            // Remove license file if present
-            this.fs.delete(this.destinationPath('LICENSE'));
         }
     }
     _writePackageJSON() {
