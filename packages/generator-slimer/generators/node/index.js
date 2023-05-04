@@ -19,6 +19,10 @@ const knownOptions = {
         type: Boolean,
         desc: 'Is the project public?'
     },
+    typescript: {
+        type: Boolean,
+        desc: 'Create a TypeScript module?'
+    },
     org: {
         type: String,
         default: 'TryGhost',
@@ -51,7 +55,10 @@ module.exports = class extends Generator {
     initializing() {
         super.initializing();
 
-        this.props.main = this.props.type === 'app' ? 'app.js' : 'index.js';
+        const baseName = this.props.type === 'app' ? 'app' : 'index';
+        const extension = this.props.typescript ? 'ts' : 'js';
+        this.props.main = `${this.props.typescript ? './src/' : ''}${baseName}.${extension}`;
+        this.props.buildMain = `${this.props.typescript ? 'build/' : ''}${baseName}.js`;
     }
 
     prompting() {
@@ -72,7 +79,8 @@ module.exports = class extends Generator {
     _createAppStructure() {
         this.fs.copyTpl(
             this.templatePath('blank.js'),
-            this.destinationPath(this.props.main)
+            this.destinationPath(this.props.main),
+            {isTypescript: this.props.typescript}
         );
     }
 
@@ -80,14 +88,15 @@ module.exports = class extends Generator {
         // Create a lib dir with a blank correctly named file
         this.fs.copyTpl(
             this.templatePath('blank.js'),
-            this.destinationPath(`./lib/${this.props.repoName}.js`)
+            this.destinationPath(`./${this.props.typescript ? 'src' : 'lib'}/${this.props.repoName}.${this.props.typescript ? 'ts' : 'js'}`),
+            {isTypescript: this.props.typescript}
         );
 
-        // Create an index.js pointing at the lib file
+        // Create an index file pointing at the lib file
         this.fs.copyTpl(
-            this.templatePath('index.js'),
+            this.templatePath(`index.${this.props.typescript ? 'ts' : 'js'}`),
             this.destinationPath(this.props.main),
-            {libFilePath: `./lib/${this.props.repoName}`}
+            {libFilePath: `./${this.props.typescript ? '' : 'lib/'}${this.props.repoName}`}
         );
     }
 
@@ -106,8 +115,9 @@ module.exports = class extends Generator {
                 license: this.props.public ? '"license": "MIT",' : '"private": true,',
                 isPublicScoped: this.props.public && _.startsWith(this.props.npmName, '@'),
                 isPublic: this.props.public,
+                isTypescript: this.props.typescript,
                 repo: repo,
-                main: this.props.main
+                main: this.props.buildMain
             }
         );
     }
@@ -121,6 +131,13 @@ module.exports = class extends Generator {
 
         // Create a package.json file
         this._writePackageJson();
+
+        if (this.props.typescript) {
+            this.fs.copyTpl(
+                this.templatePath('tsconfig.json'),
+                this.destinationPath('tsconfig.json')
+            );
+        }
     }
 
     install() {

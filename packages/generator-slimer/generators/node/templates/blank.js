@@ -1,1 +1,2 @@
-// Main module file
+// Main module file<% if (isTypescript) { %>
+export {};<% } %>

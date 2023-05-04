@@ -4,13 +4,18 @@
   "repository": "<%= repo %>",
   "author": "Ghost Foundation",
   <%- license %>
-  "main": "<%= main %>",
-  "scripts": {
-    "dev": "echo \"Implement me!\""
+  "main": "<%= main %>",<% if (isTypescript) { %>
+  "types": "build/index.d.ts",<% } %>
+  "scripts": {<% if (isTypescript) { %>
+    "dev": "tsc --watch --preserveWatchOutput --sourceMap",
+    "build": "tsc",
+    "prepare": "tsc"<% } else { %>
+    "dev": "echo \"Implement me!\""<% } %>
   },
-  "files": [
+  "files": [<% if (isTypescript) { %>
+    "build"<% } else { %>
     "<%= main %>",
-    "lib"
+    "lib"<% } %>
   ],
   <% if (isPublicScoped) { %>
   "publishConfig": {

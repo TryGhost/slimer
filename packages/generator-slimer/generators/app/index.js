@@ -130,6 +130,13 @@ module.exports = class extends Generator {
                 name: 'desc',
                 message: `Enter a one-line description for your ${this.props.type === 'pkg' ? 'package' : this.props.type === 'mono' ? 'monorepo' : this.props.type}:`,
                 when: _.isNil(this.props.desc)
+            },
+            {
+                type: 'confirm',
+                name: 'typescript',
+                message: `Do you want to create a TypeScript module?`,
+                when: () => this.props.type === 'pkg' && _.isNil(this.props.typescript),
+                default: false
             }
         ];
 
