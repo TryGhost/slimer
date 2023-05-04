@@ -1,6 +1,6 @@
 {
   "name": "@tryghost/generator-slimer",
-  "version": "1.13.0",
+  "version": "1.13.1",
   "description": "A Yeoman generator for creating new packages within the Ghost ecosystem.",
   "repository": "https://github.com/TryGhost/slimer/tree/main/packages/generator-slimer",
   "author": "Ghost Foundation",
