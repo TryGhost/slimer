@@ -1,4 +1,4 @@
-import assert from 'assert';
+import assert from 'assert/strict';
 
 describe('Hello world', function () {
     it('Runs a test', function () {
