@@ -25,6 +25,7 @@
   "devDependencies": {
     "eslint": "5.16.0",
     "eslint-plugin-ghost": "0.6.0",
+    "lerna": "7.1.4",
     "mocha": "6.2.3",
     "should": "13.2.3",
     "sinon": "7.5.0"
