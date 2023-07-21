@@ -30,6 +30,22 @@
     "should": "13.2.3",
     "sinon": "7.5.0"
   },
+  "lerna": {
+    "version": "independent",
+    "npmClient": "yarn",
+    "packages": ["packages/*"],
+    "command": {
+        "publish": {
+            "allowBranch": "main",
+            "message": "Published new versions"
+        }
+    },
+    "local": {
+        "public": true,
+        "repo": "https://github.com/TryGhost/slimer",
+        "scope": "@tryghost"
+    }
+  },
   "renovate": {
     "extends": [
       "@tryghost:quietJS"
