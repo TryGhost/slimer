@@ -29,5 +29,10 @@
     "mocha": "6.2.3",
     "should": "13.2.3",
     "sinon": "7.5.0"
+  },
+  "renovate": {
+    "extends": [
+      "@tryghost:quietJS"
+    ]
   }
 }
