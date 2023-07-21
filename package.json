@@ -16,8 +16,7 @@
     "setup": "lerna bootstrap",
     "link:cli": "ln -s $( cd \"$(dirname ./packages/slimer-cli/bin/slimer.js)\" ; pwd -P )/slimer.js $(npm bin --global)/slimer",
     "unlink:cli": "rm $(npm bin --global)/slimer",
-    "test:parent": "NODE_ENV=testing mocha ./test/**/*.test.js",
-    "test": "yarn test:parent && lerna run test",
+    "test": "yarn lerna run test",
     "lint": "lerna run lint",
     "preship": "yarn test",
     "ship": "lerna publish --git-remote ${GHOST_UPSTREAM:-origin}"
@@ -25,10 +24,7 @@
   "devDependencies": {
     "eslint": "5.16.0",
     "eslint-plugin-ghost": "0.6.0",
-    "lerna": "7.1.4",
-    "mocha": "6.2.3",
-    "should": "13.2.3",
-    "sinon": "7.5.0"
+    "lerna": "7.1.4"
   },
   "lerna": {
     "version": "independent",
