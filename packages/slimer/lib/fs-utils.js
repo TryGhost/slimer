@@ -121,6 +121,15 @@ fsUtils.loadLocalPkgConfig = () => {
     return require(path.join(rootDir, PKG_FILENAME));
 };
 
+// Fallback method, determine the config from the path if there is no package.json
+fsUtils.getFallbackRepo = (org) => { // get the last directory from the path
+    let name = path.basename(process.cwd());
+    let repo = `${org}/${name}`;
+    let url = `https://github.com/${repo}.git`;
+
+    return {url, repo, name, org};
+};
+
 fsUtils.getRepo = () => {
     let pkgJSON = fsUtils.loadBasePkgConfig();
     let url = pkgJSON.repository.url || pkgJSON.repository;
@@ -161,5 +170,6 @@ module.exports = {
     isPublic: fsUtils.isPublic,
     getType: fsUtils.getType,
     getRepo: fsUtils.getRepo,
-    getName: fsUtils.getName
+    getName: fsUtils.getName,
+    getFallbackRepo: fsUtils.getFallbackRepo
 };
