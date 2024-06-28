@@ -21,9 +21,9 @@
     "access": "public"
   },
   "devDependencies": {
-    "mocha": "6.2.3",
+    "mocha": "10.5.2",
     "should": "13.2.3",
-    "sinon": "7.5.0"
+    "sinon": "18.0.0"
   },
   "dependencies": {
     "@tryghost/generator-slimer": "^1.14.1",
