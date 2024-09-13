@@ -23,7 +23,7 @@
   "devDependencies": {
     "mocha": "6.2.3",
     "should": "13.2.3",
-    "sinon": "7.5.0"
+    "sinon": "19.0.2"
   },
   "dependencies": {
     "@tryghost/generator-slimer": "^1.14.1",
