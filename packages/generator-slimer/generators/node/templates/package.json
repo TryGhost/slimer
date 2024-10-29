@@ -8,7 +8,8 @@
   "types": "build/index.d.ts",<% } %>
   "scripts": {<% if (isTypescript) { %>
     "dev": "tsc --watch --preserveWatchOutput --sourceMap",
-    "build": "tsc",
+    "build": "yarn build:ts",
+    "build:ts": "tsc",
     "prepare": "tsc"<% } else { %>
     "dev": "echo \"Implement me!\""<% } %>
   },
