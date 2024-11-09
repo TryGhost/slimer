@@ -87,15 +87,6 @@
         }
       ]
     },
-    "groupTestLint": {
-      "description": "Group all testing & linting updates",
-      "packageRules": [
-        {
-          "extends": "@tryghost:pkgTestLint",
-          "groupName": "Test & linting packages"
-        }
-      ]
-    },
     "groupBuildTools": {
       "description": "Group all build tool updates",
       "packageRules": [
