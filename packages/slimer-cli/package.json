@@ -1,6 +1,6 @@
 {
   "name": "@tryghost/slimer-cli",
-  "version": "1.9.3",
+  "version": "1.9.4",
   "description": "tbc",
   "repository": "https://github.com/TryGhost/slimer/tree/main/packages/slimer-cli",
   "author": "Ghost Foundation",
