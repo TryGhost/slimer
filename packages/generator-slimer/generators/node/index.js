@@ -103,8 +103,15 @@ module.exports = class extends Generator {
     // Add package.json file (super important!)
     _writePackageJson() {
         let repo = this.props.type === 'pkg' ?
-            `${this.props.repo}/tree/main/packages/${this.props.repoName}` :
-            `git@github.com:${this.props.org}/${this.props.repoName}.git`;
+            {
+                type: 'git',
+                url: `git+https://github.com/${this.props.org}/${this.props.repo}.git`,
+                directory: `packages/${this.props.repoName}`
+            } :
+            {
+                type: 'git',
+                url: `git+https://github.com/${this.props.org}/${this.props.repoName}.git`
+            };
 
         this.fs.copyTpl(
             this.templatePath('package.json'),
