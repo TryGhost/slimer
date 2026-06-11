@@ -8,7 +8,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "echo \"Implement me!\"",
-    "test": "NODE_ENV=testing mocha ./test/**/*.test.js",
+    "test": "NODE_ENV=testing vitest run --coverage",
     "lint": "eslint . --ext .js --cache",
     "posttest": "yarn lint"
   },
@@ -21,7 +21,6 @@
     "access": "public"
   },
   "devDependencies": {
-    "mocha": "6.2.3",
     "should": "13.2.3",
     "sinon": "21.0.1"
   },

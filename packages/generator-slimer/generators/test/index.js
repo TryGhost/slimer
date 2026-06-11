@@ -34,8 +34,8 @@ module.exports = class extends Generator {
     // We use default, so that writing can be used to add more scripts after this
     default() {
         const testScript = this.props.typescript
-            ? `NODE_ENV=testing c8 --src src --all --check-coverage --100 --reporter text --reporter cobertura mocha -r ts-node/register './test/**/*.test.ts'`
-            : `NODE_ENV=testing c8 --all --check-coverage --100  --reporter text --reporter cobertura mocha './test/**/*.test.js'`;
+            ? `NODE_ENV=testing vitest run --globals --coverage --coverage.provider=v8 --coverage.include 'src/**/*.ts' --coverage.thresholds.100 --coverage.reporter text --coverage.reporter cobertura`
+            : `NODE_ENV=testing vitest run --globals --coverage --coverage.provider=v8 --coverage.include '*.js' --coverage.include 'lib/**/*.js' --coverage.thresholds.100 --coverage.reporter text --coverage.reporter cobertura`;
 
         // Add test script to package.json
         const destination = this.fs.readJSON(this.destinationPath('package.json'));
@@ -65,9 +65,9 @@ module.exports = class extends Generator {
         }
 
         // Test dependencies
-        const testPackages = ['c8', 'mocha', 'sinon'];
+        const testPackages = ['vitest', '@vitest/coverage-v8', 'sinon'];
         if (this.props.typescript) {
-            testPackages.push('ts-node', 'typescript');
+            testPackages.push('typescript');
         }
         this.yarnInstall(testPackages, options);
     }
