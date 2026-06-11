@@ -24,7 +24,7 @@
   "devDependencies": {
     "@vitest/coverage-v8": "^4.1.8",
     "eslint": "5.16.0",
-    "eslint-plugin-ghost": "0.6.0",
+    "eslint-plugin-ghost": "3.5.0",
     "lerna": "7.4.2",
     "vite": "^8.0.16",
     "vitest": "^4.1.8"
