@@ -25,7 +25,7 @@
     "@vitest/coverage-v8": "^4.1.8",
     "eslint": "5.16.0",
     "eslint-plugin-ghost": "0.6.0",
-    "lerna": "7.4.2",
+    "lerna": "9.0.7",
     "vite": "^8.0.16",
     "vitest": "^4.1.8"
   },
