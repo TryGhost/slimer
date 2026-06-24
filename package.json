@@ -49,7 +49,7 @@
   },
   "renovate": {
     "extends": [
-      "@tryghost:quietJS"
+      "github>TryGhost/renovate-config"
     ]
   }
 }
