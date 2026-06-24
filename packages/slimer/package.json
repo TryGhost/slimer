@@ -22,7 +22,7 @@
   },
   "devDependencies": {
     "should": "13.2.3",
-    "sinon": "21.0.1"
+    "sinon": "22.0.0"
   },
   "dependencies": {
     "@tryghost/generator-slimer": "^1.14.2",
